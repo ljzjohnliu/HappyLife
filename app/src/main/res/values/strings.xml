@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">HappyLife</string>
+
+    <string name="home">Home</string>
+    <string name="weather">Weather</string>
+    <string name="favor">Favor</string>
+    <string name="mine">Mine</string>
+    <string name="friends">Friends</string>
+
+</resources>

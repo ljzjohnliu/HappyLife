@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">i生活</string>
+
+    <string name="home">首页</string>
+    <string name="weather">天气</string>
+    <string name="favor">收藏</string>
+    <string name="mine">我的</string>
+    <string name="friends">朋友圈</string>
+
+</resources>

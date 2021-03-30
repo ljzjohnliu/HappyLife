@@ -1,0 +1,17 @@
+ext{
+    kotlin_version = "1.4.31"
+    leakcanary_version = "2.5"
+
+    targetSdkVersion = 28
+    buildToolsVersion = '28.0.2'
+    compileSdkVersion = 28
+
+    butter_knife_version    = "10.2.3"
+
+    rxjava_version          = "3.0.8"
+    rxandroid_version       = "3.0.0"
+    retrofit_version        = "2.9.0"
+    espressoSdkVersion      = "2.2.2"
+    fresco_version           = "2.3.0"
+    okhttp_version          = "3.8.1"
+}

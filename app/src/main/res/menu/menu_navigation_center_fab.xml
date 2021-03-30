@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/i_home"
+        android:checked="true"
+        android:icon="@mipmap/home"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/i_weather"
+        android:icon="@mipmap/message"
+        android:title="@string/weather" />
+    <!--must set the item title to empty-->
+    <item
+        android:id="@+id/i_empty"
+        android:title="" />
+    <item
+        android:id="@+id/i_favor"
+        android:icon="@mipmap/world"
+        android:title="@string/favor" />
+    <item
+        android:id="@+id/i_mine"
+        android:icon="@mipmap/person"
+        android:title="@string/mine" />
+</menu>
