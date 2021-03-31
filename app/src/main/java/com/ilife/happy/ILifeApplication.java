@@ -60,7 +60,7 @@ public class ILifeApplication extends Application implements GlobalActivityMgr.O
 
     private void init() {
         Log.d(TIME_TRACE, "================================================");
-        Log.d(TIME_TRACE, "Hanami application init start to run");
+        Log.d(TIME_TRACE, "ILife application init start to run");
         Stopwatch overall = Stopwatch.createStarted();
 
         Stopwatch subRouteWatch = Stopwatch.createStarted();
@@ -88,7 +88,7 @@ public class ILifeApplication extends Application implements GlobalActivityMgr.O
         initAutoSize();
 
         overall.stop();
-        Log.d(TIME_TRACE, "Hanami application init finished, time lapse = " + overall.elapsed(TimeUnit.MILLISECONDS));
+        Log.d(TIME_TRACE, "ILife application init finished, time lapse = " + overall.elapsed(TimeUnit.MILLISECONDS));
         Log.d(TIME_TRACE, "================================================");
     }
 

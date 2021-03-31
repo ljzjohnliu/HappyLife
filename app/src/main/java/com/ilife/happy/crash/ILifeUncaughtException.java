@@ -11,6 +11,6 @@ public class ILifeUncaughtException implements Thread.UncaughtExceptionHandler {
     @Override
     public void uncaughtException(@NonNull Thread t, @NonNull Throwable e) {
         e.printStackTrace();
-        Log.e("HanamiUncaughtException", "HanamiCrash: " + e.getStackTrace());
+        Log.e("ILifeUncaughtException", "ILifeCrash: " + e.getStackTrace());
     }
 }
