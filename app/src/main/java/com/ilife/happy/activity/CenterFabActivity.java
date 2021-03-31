@@ -18,6 +18,7 @@ import com.ilife.happy.R;
 import com.ilife.happy.fragment.BaseFragment2;
 import com.ilife.happy.fragment.HomeFragment;
 import com.ilife.happy.fragment.MineFragment;
+import com.ilife.happy.utils.SystemUIUtils;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
@@ -44,6 +45,8 @@ public class CenterFabActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_layout);
         ButterKnife.bind(this);
+        SystemUIUtils.setupTranslucentSystemBar(this);
+        SystemUIUtils.setSystemBarTitle(this);
 
         initData();
         initView();
