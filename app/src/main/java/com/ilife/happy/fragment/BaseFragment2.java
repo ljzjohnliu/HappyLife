@@ -14,7 +14,7 @@ import com.ilife.happy.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class BaseFragment extends Fragment {
+public class BaseFragment2 extends Fragment {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;

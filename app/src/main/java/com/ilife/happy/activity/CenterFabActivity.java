@@ -15,7 +15,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ilife.happy.R;
-import com.ilife.happy.fragment.BaseFragment;
+import com.ilife.happy.fragment.BaseFragment2;
+import com.ilife.happy.fragment.HomeFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
@@ -51,36 +52,34 @@ public class CenterFabActivity extends AppCompatActivity {
     private void initData() {
         fragments = new ArrayList<>(4);
 
-        // create music fragment and add it
-        BaseFragment musicFragment = new BaseFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("title", getString(R.string.home));
-        musicFragment.setArguments(bundle);
+        // create home fragment and add it
+        HomeFragment homeFragment = new HomeFragment();
 
-        // create backup fragment and add it
-        BaseFragment backupFragment = new BaseFragment();
+        Bundle bundle;
+        // create weather fragment and add it
+        BaseFragment2 weatherFragment = new BaseFragment2();
         bundle = new Bundle();
         bundle.putString("title", getString(R.string.weather));
-        backupFragment.setArguments(bundle);
+        weatherFragment.setArguments(bundle);
 
-        // create friends fragment and add it
-        BaseFragment favorFragment = new BaseFragment();
+        // create favor fragment and add it
+        BaseFragment2 favorFragment = new BaseFragment2();
         bundle = new Bundle();
         bundle.putString("title", getString(R.string.favor));
         favorFragment.setArguments(bundle);
 
-        // create friends fragment and add it
-        BaseFragment visibilityFragment = new BaseFragment();
+        // create mine fragment and add it
+        BaseFragment2 mineFragment = new BaseFragment2();
         bundle = new Bundle();
         bundle.putString("title", getString(R.string.mine));
-        visibilityFragment.setArguments(bundle);
+        mineFragment.setArguments(bundle);
 
 
         // add to fragments for adapter
-        fragments.add(musicFragment);
-        fragments.add(backupFragment);
+        fragments.add(homeFragment);
+        fragments.add(weatherFragment);
         fragments.add(favorFragment);
-        fragments.add(visibilityFragment);
+        fragments.add(mineFragment);
     }
 
 
