@@ -14,4 +14,7 @@ ext{
     espressoSdkVersion      = "2.2.2"
     fresco_version           = "2.3.0"
     okhttp_version          = "3.8.1"
+
+    event_bus_version       = "3.2.0"
+    mmkv_version            = "1.2.6"
 }

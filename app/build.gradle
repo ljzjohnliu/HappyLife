@@ -48,10 +48,23 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation project(':widget')
+    implementation project(':common')
 
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'com.google.android.material:material:1.2.0-alpha04'
 
     implementation "com.jakewharton:butterknife:$butter_knife_version"
     kapt "com.jakewharton:butterknife-compiler:$butter_knife_version"
+
+    implementation "com.facebook.fresco:fresco:$fresco_version"
+    // For animated GIF support
+    implementation "com.facebook.fresco:animated-gif:$fresco_version"
+    // For WebP support, including animated WebP
+    implementation "com.facebook.fresco:animated-webp:$fresco_version"
+    implementation "com.facebook.fresco:webpsupport:$fresco_version"
+
+    api 'com.google.guava:guava:24.1-android'
+
+    //Use relinker to fix MMKV crash on Google Pixel
+    implementation 'com.getkeepsafe.relinker:relinker:1.4.3'
 }
