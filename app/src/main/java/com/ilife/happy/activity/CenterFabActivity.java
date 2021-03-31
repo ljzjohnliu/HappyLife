@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ilife.happy.R;
 import com.ilife.happy.fragment.BaseFragment2;
 import com.ilife.happy.fragment.HomeFragment;
+import com.ilife.happy.fragment.MineFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
@@ -69,11 +70,7 @@ public class CenterFabActivity extends AppCompatActivity {
         favorFragment.setArguments(bundle);
 
         // create mine fragment and add it
-        BaseFragment2 mineFragment = new BaseFragment2();
-        bundle = new Bundle();
-        bundle.putString("title", getString(R.string.mine));
-        mineFragment.setArguments(bundle);
-
+        MineFragment mineFragment = MineFragment.Companion.newInstance(getString(R.string.mine));
 
         // add to fragments for adapter
         fragments.add(homeFragment);
