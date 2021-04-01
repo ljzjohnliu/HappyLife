@@ -67,4 +67,8 @@ dependencies {
 
     //Use relinker to fix MMKV crash on Google Pixel
     implementation 'com.getkeepsafe.relinker:relinker:1.4.3'
+
+    //添加日历控件库
+//    implementation 'com.haibin:calendarview:3.7.1'
+    implementation project(':calendarview')
 }

@@ -6,7 +6,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -18,16 +17,14 @@ import com.ilife.happy.R;
 import com.ilife.happy.fragment.BaseFragment2;
 import com.ilife.happy.fragment.HomeFragment;
 import com.ilife.happy.fragment.MineFragment;
-import com.ilife.happy.utils.SystemUIUtils;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class CenterFabActivity extends AppCompatActivity {
+public class CenterFabActivity extends BaseActivity {
     private static final String TAG = "CenterFabActivity";
 
     @BindView(R.id.bnve)
@@ -41,19 +38,7 @@ public class CenterFabActivity extends AppCompatActivity {
     private List<Fragment> fragments;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_layout);
-        ButterKnife.bind(this);
-        SystemUIUtils.setupTranslucentSystemBar(this);
-        SystemUIUtils.setSystemBarTitle(this);
-
-        initData();
-        initView();
-        initEvent();
-    }
-
-    private void initData() {
+    public void initData() {
         fragments = new ArrayList<>(4);
 
         // create home fragment and add it
@@ -80,22 +65,30 @@ public class CenterFabActivity extends AppCompatActivity {
         fragments.add(weatherFragment);
         fragments.add(favorFragment);
         fragments.add(mineFragment);
+
+        // set adapter
+        adapter = new VpAdapter(this, fragments);
+        viewPager2.setAdapter(adapter);
     }
 
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main_layout;
+    }
 
     /**
      * change BottomNavigationViewEx style
      */
-    private void initView() {
+    @Override
+    public void initView() {
         bottomNavigationViewEx.enableItemShiftingMode(true);
         bottomNavigationViewEx.enableShiftingMode(false);
         bottomNavigationViewEx.enableAnimation(true);
         bottomNavigationViewEx.setIconSize(36f, 36f);
         bottomNavigationViewEx.setTextSize(12);
 
-        // set adapter
-        adapter = new VpAdapter(this, fragments);
-        viewPager2.setAdapter(adapter);
+        initEvent();
     }
 
     /**
