@@ -12,12 +12,16 @@ import com.ilife.dataroom.RoomDemoDatabase;
 import com.ilife.dataroom.dao.NoteDao;
 import com.ilife.dataroom.model.NoteModel;
 import com.ilife.happy.R;
+import com.ilife.networkapi.api.ApisManager;
+import com.ilife.networkapi.http.WeatherInterface;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RoomNoteActivity extends AppCompatActivity {
 
@@ -59,6 +63,17 @@ public class RoomNoteActivity extends AppCompatActivity {
 
         roomDemoDatabase = Room.databaseBuilder(this, RoomDemoDatabase.class, "word_database").allowMainThreadQueries().build();
         noteDao = roomDemoDatabase.noteDao();
+    }
+
+    private void testNet() {
+        ApisManager.getInstance().getApi(WeatherInterface.class).getWeaterUseRxjavaAsJson()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    Log.d("TAG", "gotoAuctionDetailActivity: response = " + response);
+                }, throwable -> {
+                    Log.d("TAG", "gotoAuctionDetailActivity: throwable = " + throwable.getMessage());
+                });
     }
 
     private void show() {
