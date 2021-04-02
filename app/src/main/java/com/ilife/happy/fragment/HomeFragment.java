@@ -94,6 +94,7 @@ public class HomeFragment extends BaseFragment<HomePresenter, IHomeContract.View
                 mTextMonthDay.setText(String.valueOf(mYear));
             }
         });
+
         mRootView.findViewById(R.id.iv_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

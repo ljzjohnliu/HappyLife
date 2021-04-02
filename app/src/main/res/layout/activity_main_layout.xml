@@ -15,13 +15,6 @@
         app:itemTextColor="@color/selector_item_primary_color"
         app:menu="@menu/menu_navigation_center_fab" />
 
-    <!--
-    style="@style/bnve_white_bg"
-    android:background="@android:color/white"
-    app:itemIconTint="@color/selector_item_primary_color"
-    app:itemTextColor="@color/selector_item_primary_color"
-    -->
-
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp"
         android:layout_width="match_parent"
