@@ -1,10 +1,10 @@
 ext{
-    kotlin_version = "1.4.31"
-    leakcanary_version = "2.5"
+    kotlin_version          = "1.4.31"
+    leakcanary_version      = "2.5"
 
-    targetSdkVersion = 28
-    buildToolsVersion = '28.0.2'
-    compileSdkVersion = 28
+    targetSdkVersion        = 28
+    buildToolsVersion       = '28.0.2'
+    compileSdkVersion       = 28
 
     butter_knife_version    = "10.2.3"
 
@@ -17,4 +17,6 @@ ext{
 
     event_bus_version       = "3.2.0"
     mmkv_version            = "1.2.6"
+
+    room_version            = "2.2.6"
 }

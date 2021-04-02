@@ -2,7 +2,7 @@ package com.ilife.happy.model;
 
 import android.util.Log;
 
-import com.ilife.common.base.BaseModel;
+import com.ilife.common.basemvp.BaseModel;
 import com.ilife.happy.bean.HomeInfo;
 import com.ilife.happy.contract.IHomeContract;
 import com.ilife.happy.presenter.HomePresenter;

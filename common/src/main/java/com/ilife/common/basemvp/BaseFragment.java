@@ -1,4 +1,4 @@
-package com.ilife.common.base;
+package com.ilife.common.basemvp;
 
 import android.content.Context;
 import android.os.Bundle;

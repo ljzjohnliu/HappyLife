@@ -1,4 +1,4 @@
-package com.ilife.common.base;
+package com.ilife.common.basemvp;
 
 public interface IBaseView<P extends BasePresenter, CONTRACT>  {
     CONTRACT getContract();

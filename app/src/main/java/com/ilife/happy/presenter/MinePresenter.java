@@ -1,6 +1,6 @@
 package com.ilife.happy.presenter;
 
-import com.ilife.common.base.BasePresenter;
+import com.ilife.common.basemvp.BasePresenter;
 import com.ilife.happy.bean.UserInfo;
 import com.ilife.happy.contract.IMineContract;
 import com.ilife.happy.fragment.MineFragment;

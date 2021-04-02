@@ -1,5 +1,6 @@
 package com.ilife.happy.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,6 +14,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.ilife.common.base.BaseSimpleActivity;
 import com.ilife.happy.R;
 import com.ilife.happy.fragment.BaseFragment2;
 import com.ilife.happy.fragment.HomeFragment;
@@ -24,7 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class CenterFabActivity extends BaseActivity {
+public class CenterFabActivity extends BaseSimpleActivity {
     private static final String TAG = "CenterFabActivity";
 
     @BindView(R.id.bnve)
@@ -89,6 +91,7 @@ public class CenterFabActivity extends BaseActivity {
         bottomNavigationViewEx.setTextSize(12);
 
         initEvent();
+        startActivity(new Intent(this, RoomNoteActivity.class));
     }
 
     /**

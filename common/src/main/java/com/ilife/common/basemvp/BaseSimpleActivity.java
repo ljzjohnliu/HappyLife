@@ -1,4 +1,4 @@
-package com.ilife.common.base;
+package com.ilife.common.basemvp;
 
 import android.os.Bundle;
 
@@ -9,16 +9,13 @@ import com.ilife.common.GlobalActivityMgr;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import me.jessyan.autosize.internal.CustomAdapt;
 
-public abstract class BaseActivity<P extends BasePresenter, CONTRACT> extends FragmentActivity implements IBaseView, CustomAdapt {
+public class BaseSimpleActivity extends FragmentActivity implements CustomAdapt {
 
-    protected P presenter;
     protected CompositeDisposable compositeDisposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = getPresenter();
-        presenter.bindView(this);
         compositeDisposable = new CompositeDisposable();
         GlobalActivityMgr.getInstance().addActivity(this);
     }
@@ -27,15 +24,8 @@ public abstract class BaseActivity<P extends BasePresenter, CONTRACT> extends Fr
     protected void onDestroy() {
         super.onDestroy();
         compositeDisposable.dispose();
-        presenter.unBindView();
         GlobalActivityMgr.getInstance().removeActivity(this);
     }
-
-    @Override
-    public abstract CONTRACT getContract();
-
-    @Override
-    public abstract P getPresenter();
 
     @Override
     public boolean isBaseOnWidth() {

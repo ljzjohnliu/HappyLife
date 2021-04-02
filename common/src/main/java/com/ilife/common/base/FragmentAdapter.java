@@ -1,4 +1,4 @@
-package com.ilife.happy.fragment;
+package com.ilife.common.base;
 
 import android.view.ViewGroup;
 

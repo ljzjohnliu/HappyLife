@@ -2,7 +2,7 @@ package com.ilife.happy.model;
 
 import android.util.Log;
 
-import com.ilife.common.base.BaseModel;
+import com.ilife.common.basemvp.BaseModel;
 import com.ilife.happy.bean.UserInfo;
 import com.ilife.happy.contract.IMineContract;
 import com.ilife.happy.presenter.MinePresenter;

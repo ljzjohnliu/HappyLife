@@ -17,7 +17,7 @@ import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.CalendarLayout;
 import com.haibin.calendarview.CalendarView;
 import com.haibin.calendarview.TrunkBranchAnnals;
-import com.ilife.common.base.BaseFragment;
+import com.ilife.common.basemvp.BaseFragment;
 import com.ilife.happy.R;
 import com.ilife.happy.bean.HomeInfo;
 import com.ilife.happy.contract.IHomeContract;

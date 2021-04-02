@@ -63,7 +63,7 @@ dependencies {
     implementation "com.facebook.fresco:animated-webp:$fresco_version"
     implementation "com.facebook.fresco:webpsupport:$fresco_version"
 
-    api 'com.google.guava:guava:24.1-android'
+    implementation 'com.google.guava:guava:24.1-jre'
 
     //Use relinker to fix MMKV crash on Google Pixel
     implementation 'com.getkeepsafe.relinker:relinker:1.4.3'
@@ -71,4 +71,7 @@ dependencies {
     //添加日历控件库
 //    implementation 'com.haibin:calendarview:3.7.1'
     implementation project(':calendarview')
+
+    implementation project(':dataroom')
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 }

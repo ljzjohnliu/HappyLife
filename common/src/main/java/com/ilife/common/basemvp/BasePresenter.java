@@ -1,4 +1,4 @@
-package com.ilife.common.base;
+package com.ilife.common.basemvp;
 
 import java.lang.ref.WeakReference;
 

@@ -1,4 +1,4 @@
-package com.ilife.happy.fragment;
+package com.ilife.common.base;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseSimpleFragment extends Fragment {
     protected View mRootView;
     protected LayoutInflater mInflater;
     protected Context mContext;

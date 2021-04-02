@@ -1,4 +1,4 @@
-package com.ilife.common.base;
+package com.ilife.common.basemvp;
 
 public abstract class BaseModel<P extends BasePresenter, CONTRACT> {
 

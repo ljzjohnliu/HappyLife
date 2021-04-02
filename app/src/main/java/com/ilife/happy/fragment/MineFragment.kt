@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import com.ilife.common.base.BaseFragment
+import com.ilife.common.basemvp.BaseFragment
 import com.ilife.happy.R
 import com.ilife.happy.bean.UserInfo
 import com.ilife.happy.contract.IMineContract
