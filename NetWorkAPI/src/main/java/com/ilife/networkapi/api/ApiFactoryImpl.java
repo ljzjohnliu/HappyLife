@@ -1,8 +1,8 @@
-package com.hanami.networkapi.api;
+package com.ilife.networkapi.api;
 
-import com.hanami.networkapi.http.LoginRegistryInterface;
-import com.hanami.networkapi.http.WeatherInterface;
 import com.ilife.common.http.HttpClient;
+import com.ilife.networkapi.http.LoginRegistryInterface;
+import com.ilife.networkapi.http.WeatherInterface;
 
 import retrofit2.Retrofit;
 

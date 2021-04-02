@@ -1,7 +1,8 @@
-package com.hanami.networkapi.http;
+package com.ilife.networkapi.http;
 
-import com.hanami.networkapi.model.BaseResponse;
-import com.hanami.networkapi.model.GlobalConfigurationInfo;
+
+import com.ilife.networkapi.model.BaseResponse;
+import com.ilife.networkapi.model.GlobalConfigurationInfo;
 
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.POST;

@@ -1,7 +1,7 @@
-package com.hanami.networkapi.http;
+package com.ilife.networkapi.http;
 
-import com.hanami.networkapi.model.BaseResponse;
-import com.hanami.networkapi.model.LoginUserInfo;
+import com.ilife.networkapi.model.BaseResponse;
+import com.ilife.networkapi.model.LoginUserInfo;
 
 import org.json.JSONObject;
 

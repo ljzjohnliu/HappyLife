@@ -1,8 +1,8 @@
-package com.hanami.networkapi.http;
+package com.ilife.networkapi.http;
 
 import com.google.gson.JsonObject;
-import com.hanami.networkapi.model.ResultData;
-import com.hanami.networkapi.model.WeatherInfoData;
+import com.ilife.networkapi.model.ResultData;
+import com.ilife.networkapi.model.WeatherInfoData;
 
 import io.reactivex.rxjava3.core.Observable;
 import okhttp3.ResponseBody;

@@ -1,4 +1,4 @@
-package com.hanami.networkapi.model;
+package com.ilife.networkapi.model;
 
 import com.ilife.common.model.BaseEntity;
 
