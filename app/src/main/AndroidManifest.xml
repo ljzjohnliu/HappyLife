@@ -29,6 +29,8 @@
         </activity>
         <activity android:name=".activity.RoomActivity" />
         <activity android:name=".activity.RoomNoteActivity" />
+        <activity android:name=".activity.NewNoteActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

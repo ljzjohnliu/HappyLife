@@ -52,4 +52,10 @@
         <item>Show range</item>
     </string-array>
 
+    <string name="new_schedule">New Schedule</string>
+    <string name="new_schedule_title_hint">Note Title</string>
+    <string name="new_schedule_content_hint">Note Content</string>
+    <string name="new_schedule_confirm">Confirm</string>
+    <string name="new_schedule_date_hint">Note Date</string>
+
 </resources>

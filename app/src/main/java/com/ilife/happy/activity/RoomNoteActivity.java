@@ -86,23 +86,26 @@ public class RoomNoteActivity extends AppCompatActivity {
     }
 
     private void addOne() {
-        NoteModel note = new NoteModel(10001, "2021-04-00-10:33", "考试", "考试科目三");
+        NoteModel note = new NoteModel(10001, "2021-04-09 10:33", "考试", "考试科目三");
         noteDao.insertOneNote(note);
         show();
     }
 
     private void addMulti() {
-        NoteModel note1 = new NoteModel(10001, "2021-04-01-10:33", "健身", "跑步五公里");
-        NoteModel note2 = new NoteModel(10001, "2021-04-02-11:01", "学习", "学习Java编程思想");
-        NoteModel note3 = new NoteModel(10002, "2021-04-01-08:05", "吃大餐", "万达广场吃好吃得");
-        NoteModel note4 = new NoteModel(10002, "2021-04-02-20:15", "游玩", "去公园赏花");
+        NoteModel note1 = new NoteModel(10001, "2021-04-01 10:33", "健身", "跑步五公里");
+        NoteModel note2 = new NoteModel(10001, "2021-04-02 11:01", "学习", "学习Java编程思想");
+        NoteModel note3 = new NoteModel(10002, "2021-04-01 08:05", "吃大餐", "万达广场吃好吃得");
+        NoteModel note4 = new NoteModel(10002, "2021-04-02 20:15", "游玩", "去公园赏花");
+        NoteModel note5 = new NoteModel(10002, "2021-04-02 20:15", "健身", "虐福训练20分钟");
+        NoteModel note6 = new NoteModel(10002, "2021-04-02 20:15", "健身", "瑜伽半小时");
+        NoteModel note7 = new NoteModel(10002, "2021-04-02 20:15", "健身", "游泳90分钟");
 
-        noteDao.insertNote(note1, note2, note3, note4);
+        noteDao.insertNote(note1, note2, note3, note4, note5, note6, note7);
         show();
     }
 
     private void update() {
-        List<NoteModel> notes = noteDao.queryNotesByDate("2021-04-01-10:33");
+        List<NoteModel> notes = noteDao.queryNotesByDate("2021-04-01 10:33");
         Log.d("TAG", "update: notes size = " + notes.size());
 
         for (NoteModel note : notes) {

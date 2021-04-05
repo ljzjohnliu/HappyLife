@@ -181,7 +181,7 @@
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:background="#0000ff00">
+            android:background="@color/white">
 
             <LinearLayout
                 android:id="@+id/linearView"
@@ -190,7 +190,19 @@
                 android:background="@color/content_background"
                 android:clickable="true"
                 android:orientation="vertical"
-                tools:ignore="KeyboardInaccessibleWidget"></LinearLayout>
+                tools:ignore="KeyboardInaccessibleWidget">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/notes_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="0dp"
+                    android:fadeScrollbars="false"
+                    android:overScrollMode="never"
+                    android:scrollbars="none" />
+
+            </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </com.haibin.calendarview.CalendarLayout>
 

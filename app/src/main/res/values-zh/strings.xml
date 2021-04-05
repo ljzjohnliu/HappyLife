@@ -53,4 +53,10 @@
         <item>显示日期范围</item>
     </string-array>
 
+    <string name="new_schedule">新建备忘录</string>
+    <string name="new_schedule_title_hint">备忘录标题</string>
+    <string name="new_schedule_content_hint">备忘录详情</string>
+    <string name="new_schedule_confirm">确认</string>
+    <string name="new_schedule_date_hint">备忘录日期</string>
+
 </resources>
