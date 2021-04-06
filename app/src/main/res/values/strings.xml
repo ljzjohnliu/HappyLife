@@ -80,4 +80,7 @@
 
     <string name="no_notes">You havent made a plan yet, so hurry up and make a plan!</string>
 
+    <string name="person_space">Person Space</string>
+    <string name="person_level">Lv%1$d</string>
+
 </resources>

@@ -81,4 +81,7 @@
 
     <string name="no_notes">您还没制定计划，赶紧去制定计划吧！</string>
 
+    <string name="person_space">个人空间</string>
+    <string name="person_level">Lv%1$d</string>
+
 </resources>

@@ -2,8 +2,6 @@ package com.ilife.happy.fragment
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.TextView
 import com.ilife.common.basemvp.BaseFragment
 import com.ilife.happy.R
 import com.ilife.happy.bean.UserInfo
@@ -41,13 +39,13 @@ class MineFragment : BaseFragment<MinePresenter?, IMineContract.View<*>?>() {
     }
 
     override fun initView() {
-        val textView = mRootView.findViewById<View>(R.id.fragment_text_view) as TextView
-        var bundle = getArguments()
-        var s = bundle!!.getString("args")
-        textView.setOnClickListener(View.OnClickListener {
-            getPresenter().contract.personApi("arg1", "arg2")
-        })
-        textView.text = s
+//        val textView = mRootView.findViewById<View>(R.id.fragment_text_view) as TextView
+//        var bundle = getArguments()
+//        var s = bundle!!.getString("args")
+//        textView.setOnClickListener(View.OnClickListener {
+//            getPresenter().contract.personApi("arg1", "arg2")
+//        })
+//        textView.text = s
     }
 
     override fun initData() {
