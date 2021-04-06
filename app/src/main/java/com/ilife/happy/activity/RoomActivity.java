@@ -87,7 +87,7 @@ public class RoomActivity extends AppCompatActivity {
 
     private void update() {
         UserModel user = userDao.queryByUserIdModel(10003);
-        user.setName("腿哥222");
+        user.name = "腿哥222";
         userDao.updateUser(user);
         show();
     }

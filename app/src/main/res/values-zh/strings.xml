@@ -79,4 +79,6 @@
     <string name="current_time">当前时间</string>
     <string name="start_time">开始时间</string>
 
+    <string name="no_notes">您还没制定计划，赶紧去制定计划吧！</string>
+
 </resources>

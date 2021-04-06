@@ -25,7 +25,6 @@ import com.ilife.dataroom.model.NoteModel;
 import com.ilife.happy.R;
 import com.ilife.happy.activity.NewNoteActivity;
 import com.ilife.happy.adapter.NoteAdapter;
-import com.ilife.happy.bean.HomeInfo;
 import com.ilife.happy.contract.IHomeContract;
 import com.ilife.happy.presenter.HomePresenter;
 import com.ilife.happy.utils.CalendarUtils;
@@ -35,6 +34,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import butterknife.BindView;
 
 public class HomeFragment extends BaseFragment<HomePresenter, IHomeContract.View> implements
         CalendarView.OnCalendarSelectListener,
@@ -48,28 +49,32 @@ public class HomeFragment extends BaseFragment<HomePresenter, IHomeContract.View
         DialogInterface.OnClickListener {
 
     private static final String TAG = "HomeFragment";
+    @BindView(R.id.tv_month_day)
+    TextView mTextMonthDay;
+    @BindView(R.id.tv_year)
+    TextView mTextYear;
+    @BindView(R.id.tv_lunar)
+    TextView mTextLunar;
+    @BindView(R.id.calendarView)
+    CalendarView mCalendarView;
+    @BindView(R.id.notes_recyclerview)
+    RecyclerView notesRecyclerView;
+    @BindView(R.id.tv_no_data)
+    TextView tvNoData;
+    @BindView(R.id.tv_current_day)
+    TextView mTextCurrentDay;
+    @BindView(R.id.rl_tool)
+    RelativeLayout mRelativeTool;
+    @BindView(R.id.calendarLayout)
+    CalendarLayout mCalendarLayout;
 
     private HomePresenter homePresenter;
 
-    TextView mTextMonthDay;
-
-    TextView mTextYear;
-
-    TextView mTextLunar;
-
-    TextView mTextCurrentDay;
-
-    CalendarView mCalendarView;
-
-    RelativeLayout mRelativeTool;
     private int mYear;
-    CalendarLayout mCalendarLayout;
 
     private AlertDialog mMoreDialog;
-
     private AlertDialog mFuncDialog;
 
-    private RecyclerView notesRecyclerView;
     private NoteAdapter noteAdapter;
     private List<NoteModel> noteDatas = new ArrayList<>();
 
@@ -80,12 +85,7 @@ public class HomeFragment extends BaseFragment<HomePresenter, IHomeContract.View
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: ");
-
-        noteDatas = noteDao.queryAll();
-        noteAdapter = new NoteAdapter(noteDatas);
-        notesRecyclerView.setAdapter(noteAdapter);
-
-        initCalendarData(noteDatas);
+        getPresenter().getContract().getAllNotes(getActivity());
     }
 
     @Override
@@ -105,20 +105,10 @@ public class HomeFragment extends BaseFragment<HomePresenter, IHomeContract.View
         roomDemoDatabase = Room.databaseBuilder(getActivity(), RoomDemoDatabase.class, "word_database").allowMainThreadQueries().build();
         noteDao = roomDemoDatabase.noteDao();
 
-        notesRecyclerView = mRootView.findViewById(R.id.notes_recyclerview);
-
         LinearLayoutManager noteLayoutManager = new LinearLayoutManager(getActivity());
         noteLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         notesRecyclerView.setLayoutManager(noteLayoutManager);
 
-        mTextMonthDay = mRootView.findViewById(R.id.tv_month_day);
-        mTextYear = mRootView.findViewById(R.id.tv_year);
-        mTextLunar = mRootView.findViewById(R.id.tv_lunar);
-
-        mRelativeTool = mRootView.findViewById(R.id.rl_tool);
-        mCalendarView = mRootView.findViewById(R.id.calendarView);
-
-        mTextCurrentDay = mRootView.findViewById(R.id.tv_current_day);
         mTextMonthDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -247,7 +237,7 @@ public class HomeFragment extends BaseFragment<HomePresenter, IHomeContract.View
 
     @SuppressWarnings("unused")
     protected void initData() {
-        initCalendarData(noteDatas);
+//        initCalendarData(noteDatas);
     }
 
     @Override
@@ -406,8 +396,22 @@ public class HomeFragment extends BaseFragment<HomePresenter, IHomeContract.View
     public IHomeContract.View getContract() {
         return new IHomeContract.View() {
             @Override
-            public void onResult(HomeInfo homeInfo) {
-                Log.d(TAG, "onResult: homeInfo code = " + homeInfo.getCode() + ", getType = " + homeInfo.getType() + ", msg = " + homeInfo.getMsg() + ", isSuccess = " + homeInfo.isSuccess());
+            public void onNoteResult(List notes) {
+                Log.d(TAG, "onNoteResult: notes = " + notes);
+                if (notes != null && notes.size() > 0) {
+                    initCalendarData(notes);
+                    if (noteAdapter == null) {
+                        noteAdapter = new NoteAdapter(notes);
+                        notesRecyclerView.setAdapter(noteAdapter);
+                    } else {
+                        noteAdapter.refreshData(notes);
+                    }
+                    notesRecyclerView.setVisibility(View.VISIBLE);
+                    tvNoData.setVisibility(View.GONE);
+                } else {
+                    notesRecyclerView.setVisibility(View.GONE);
+                    tvNoData.setVisibility(View.VISIBLE);
+                }
             }
         };
     }

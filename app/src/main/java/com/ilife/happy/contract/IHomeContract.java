@@ -1,20 +1,22 @@
 package com.ilife.happy.contract;
 
+import android.content.Context;
+
 import com.ilife.common.model.BaseEntity;
-import com.ilife.happy.bean.HomeInfo;
+import com.ilife.dataroom.model.NoteModel;
+
+import java.util.List;
 
 public interface IHomeContract {
     interface Model {
-        void executeHomeApi(int type, String msg) throws Exception;
+        List<NoteModel> queryAllNote(Context context);
     }
 
     interface View<T extends BaseEntity> {
-        void onResult(HomeInfo t);
+        void onNoteResult(List<NoteModel> notes);
     }
 
-    interface Presenter<T extends BaseEntity> {
-        void homeApi(int type, String msg);
-
-        void responseResult(T t);
+    interface Presenter {
+        void getAllNotes(Context context);
     }
 }
