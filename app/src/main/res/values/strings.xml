@@ -53,9 +53,29 @@
     </string-array>
 
     <string name="new_schedule">New Schedule</string>
-    <string name="new_schedule_title_hint">Note Title</string>
+    <string name="new_schedule_title_hint">Please select note type:</string>
     <string name="new_schedule_content_hint">Note Content</string>
     <string name="new_schedule_confirm">Confirm</string>
     <string name="new_schedule_date_hint">Note Date</string>
+
+    <string-array name="note_types">
+        <item>Sport</item>
+        <item>Study</item>
+        <item>Relax</item>
+        <item>Baby</item>
+    </string-array>
+
+    <string name="cancel">Cancel</string>
+    <string name="title">Title</string>
+    <string name="confirm">Confirm</string>
+    <string name="year">Year</string>
+    <string name="month">Month</string>
+    <string name="day">Day</string>
+    <string name="hour">Hour</string>
+    <string name="minute">Minute</string>
+
+    <string name="select_time">Select Time</string>
+    <string name="current_time">Current Time</string>
+    <string name="start_time">Start Time</string>
 
 </resources>

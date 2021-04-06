@@ -1,5 +1,7 @@
 package com.ilife.happy.utils;
 
+import android.util.Log;
+
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -32,6 +34,7 @@ public class DateUtil {
         ParsePosition pos = new ParsePosition(0);
         Date date = formatter.parse(strDate, pos);
         Calendar calender = Calendar.getInstance();
+        Log.d("xxx", "strToCalendar: date = " + date + ", calender = " + calender);
         calender.setTime(date);
         return calender;
     }

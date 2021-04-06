@@ -2,7 +2,6 @@ package com.ilife.happy.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -10,10 +9,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
@@ -31,10 +28,10 @@ import com.ilife.happy.adapter.NoteAdapter;
 import com.ilife.happy.bean.HomeInfo;
 import com.ilife.happy.contract.IHomeContract;
 import com.ilife.happy.presenter.HomePresenter;
+import com.ilife.happy.utils.CalendarUtils;
 import com.ilife.happy.utils.DateUtil;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,11 +77,22 @@ public class HomeFragment extends BaseFragment<HomePresenter, IHomeContract.View
     private NoteDao noteDao;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: ");
 
-        roomDemoDatabase = Room.databaseBuilder(getActivity(), RoomDemoDatabase.class, "word_database").allowMainThreadQueries().build();
-        noteDao = roomDemoDatabase.noteDao();
+        noteDatas = noteDao.queryAll();
+        noteAdapter = new NoteAdapter(noteDatas);
+        notesRecyclerView.setAdapter(noteAdapter);
+
+        initCalendarData(noteDatas);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause: ");
+//        isFirstVisible = false;
     }
 
     @Override
@@ -94,21 +102,14 @@ public class HomeFragment extends BaseFragment<HomePresenter, IHomeContract.View
 
     @Override
     protected void initView() {
-        notesRecyclerView = mRootView.findViewById(R.id.notes_recyclerview);
+        roomDemoDatabase = Room.databaseBuilder(getActivity(), RoomDemoDatabase.class, "word_database").allowMainThreadQueries().build();
+        noteDao = roomDemoDatabase.noteDao();
 
-        noteDatas = noteDao.queryAll();
-        Log.d(TAG, "initView: noteDatas = " + noteDatas);
-        Log.d(TAG, "initView: noteDatas size = " + noteDatas.size());
+        notesRecyclerView = mRootView.findViewById(R.id.notes_recyclerview);
 
         LinearLayoutManager noteLayoutManager = new LinearLayoutManager(getActivity());
         noteLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         notesRecyclerView.setLayoutManager(noteLayoutManager);
-//        notesRecyclerView.addItemDecoration(new HorizontalItemDecoration(10, this));
-//        notesRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration(10, getActivity()));
-        noteAdapter = new NoteAdapter(noteDatas);
-        notesRecyclerView.setAdapter(noteAdapter);
-//        new LinearSnapHelper().attachToRecyclerView(notesRecyclerView);
-
 
         mTextMonthDay = mRootView.findViewById(R.id.tv_month_day);
         mTextYear = mRootView.findViewById(R.id.tv_year);
@@ -117,7 +118,6 @@ public class HomeFragment extends BaseFragment<HomePresenter, IHomeContract.View
         mRelativeTool = mRootView.findViewById(R.id.rl_tool);
         mCalendarView = mRootView.findViewById(R.id.calendarView);
 
-        //mCalendarView.setRange(2018, 7, 1, 2019, 4, 28);
         mTextCurrentDay = mRootView.findViewById(R.id.tv_current_day);
         mTextMonthDay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,35 +222,21 @@ public class HomeFragment extends BaseFragment<HomePresenter, IHomeContract.View
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
     }
 
-    private int getYear(String date) {
-
-        return 0;
-    }
-
     private void initCalendarData(List<NoteModel> noteDatas) {
         Map<String, Calendar> map = new HashMap<>();
 
         for (NoteModel note : noteDatas) {
-            Log.d(TAG, "initCalendarData: date = " + note.date);
-            if (note.date != null) {
+            Log.d(TAG, "initCalendarData: note = " + note.toString());
+            if (!TextUtils.isEmpty(note.date)) {
                 java.util.Calendar calendar = DateUtil.strToCalendar(note.date);
-                Log.d(TAG, "initCalendarData: 2222 year = " + calendar.get(java.util.Calendar.YEAR) +
+                Log.d(TAG, "initCalendarData: year = " + calendar.get(java.util.Calendar.YEAR) +
                         ", month = " + (calendar.get(java.util.Calendar.MONTH) + 1) + ", day = " + calendar.get(java.util.Calendar.DATE));
                 map.put(getSchemeCalendar(calendar.get(java.util.Calendar.YEAR), (calendar.get(java.util.Calendar.MONTH) + 1),
-                        calendar.get(java.util.Calendar.DATE), 0xFF40db25, note.title).toString(),
+                        calendar.get(java.util.Calendar.DATE), CalendarUtils.getMarkColor(note.type), note.title).toString(),
                         getSchemeCalendar(calendar.get(java.util.Calendar.YEAR), (calendar.get(java.util.Calendar.MONTH) + 1),
-                                calendar.get(java.util.Calendar.DATE), 0xFF40db25, note.title));
+                                calendar.get(java.util.Calendar.DATE), CalendarUtils.getMarkColor(note.type), note.title));
             }
         }
-
-
-//        for (int y = 1997; y < 2082; y++) {
-//            for (int m = 1; m <= 12; m++) {
-//
-//                map.put(getSchemeCalendar(y, m, 1, 0xFF40db25, "假").toString(),
-//                        getSchemeCalendar(y, m, 1, 0xFF40db25, "假"));
-//            }
-//        }
 
         //28560 数据量增长不会影响UI响应速度，请使用这个API替换
         mCalendarView.setSchemeDate(map);
@@ -261,81 +247,7 @@ public class HomeFragment extends BaseFragment<HomePresenter, IHomeContract.View
 
     @SuppressWarnings("unused")
     protected void initData() {
-
         initCalendarData(noteDatas);
-
-//        final int year = mCalendarView.getCurYear();
-//        final int month = mCalendarView.getCurMonth();
-//
-//        Map<String, Calendar> map = new HashMap<>();
-//        for (int y = 1997; y < 2082; y++) {
-//            for (int m = 1; m <= 12; m++) {
-//
-//                map.put(getSchemeCalendar(y, m, 1, 0xFF40db25, "假").toString(),
-//                        getSchemeCalendar(y, m, 1, 0xFF40db25, "假"));
-//
-//                map.put(getSchemeCalendar(y, m, 2, 0xFFe69138, "游").toString(),
-//                        getSchemeCalendar(y, m, 2, 0xFFe69138, "游"));
-//                map.put(getSchemeCalendar(y, m, 3, 0xFFdf1356, "事").toString(),
-//                        getSchemeCalendar(y, m, 3, 0xFFdf1356, "事"));
-//                map.put(getSchemeCalendar(y, m, 4, 0xFFaacc44, "车").toString(),
-//                        getSchemeCalendar(y, m, 4, 0xFFaacc44, "车"));
-//                map.put(getSchemeCalendar(y, m, 5, 0xFFbc13f0, "驾").toString(),
-//                        getSchemeCalendar(y, m, 5, 0xFFbc13f0, "驾"));
-//                map.put(getSchemeCalendar(y, m, 6, 0xFF542261, "记").toString(),
-//                        getSchemeCalendar(y, m, 6, 0xFF542261, "记"));
-//                map.put(getSchemeCalendar(y, m, 7, 0xFF4a4bd2, "会").toString(),
-//                        getSchemeCalendar(y, m, 7, 0xFF4a4bd2, "会"));
-//                map.put(getSchemeCalendar(y, m, 8, 0xFFe69138, "车").toString(),
-//                        getSchemeCalendar(y, m, 8, 0xFFe69138, "车"));
-//                map.put(getSchemeCalendar(y, m, 9, 0xFF542261, "考").toString(),
-//                        getSchemeCalendar(y, m, 9, 0xFF542261, "考"));
-//                map.put(getSchemeCalendar(y, m, 10, 0xFF87af5a, "记").toString(),
-//                        getSchemeCalendar(y, m, 10, 0xFF87af5a, "记"));
-//                map.put(getSchemeCalendar(y, m, 11, 0xFF40db25, "会").toString(),
-//                        getSchemeCalendar(y, m, 11, 0xFF40db25, "会"));
-//                map.put(getSchemeCalendar(y, m, 12, 0xFFcda1af, "游").toString(),
-//                        getSchemeCalendar(y, m, 12, 0xFFcda1af, "游"));
-//                map.put(getSchemeCalendar(y, m, 13, 0xFF95af1a, "事").toString(),
-//                        getSchemeCalendar(y, m, 13, 0xFF95af1a, "事"));
-//                map.put(getSchemeCalendar(y, m, 14, 0xFF33aadd, "学").toString(),
-//                        getSchemeCalendar(y, m, 14, 0xFF33aadd, "学"));
-//                map.put(getSchemeCalendar(y, m, 15, 0xFF1aff1a, "码").toString(),
-//                        getSchemeCalendar(y, m, 15, 0xFF1aff1a, "码"));
-//                map.put(getSchemeCalendar(y, m, 16, 0xFF22acaf, "驾").toString(),
-//                        getSchemeCalendar(y, m, 16, 0xFF22acaf, "驾"));
-//                map.put(getSchemeCalendar(y, m, 17, 0xFF99a6fa, "校").toString(),
-//                        getSchemeCalendar(y, m, 17, 0xFF99a6fa, "校"));
-//                map.put(getSchemeCalendar(y, m, 18, 0xFFe69138, "车").toString(),
-//                        getSchemeCalendar(y, m, 18, 0xFFe69138, "车"));
-//                map.put(getSchemeCalendar(y, m, 19, 0xFF40db25, "码").toString(),
-//                        getSchemeCalendar(y, m, 19, 0xFF40db25, "码"));
-//                map.put(getSchemeCalendar(y, m, 20, 0xFFe69138, "火").toString(),
-//                        getSchemeCalendar(y, m, 20, 0xFFe69138, "火"));
-//                map.put(getSchemeCalendar(y, m, 21, 0xFF40db25, "假").toString(),
-//                        getSchemeCalendar(y, m, 21, 0xFF40db25, "假"));
-//                map.put(getSchemeCalendar(y, m, 22, 0xFF99a6fa, "记").toString(),
-//                        getSchemeCalendar(y, m, 22, 0xFF99a6fa, "记"));
-//                map.put(getSchemeCalendar(y, m, 23, 0xFF33aadd, "假").toString(),
-//                        getSchemeCalendar(y, m, 23, 0xFF33aadd, "假"));
-//                map.put(getSchemeCalendar(y, m, 24, 0xFF40db25, "校").toString(),
-//                        getSchemeCalendar(y, m, 24, 0xFF40db25, "校"));
-//                map.put(getSchemeCalendar(y, m, 25, 0xFF1aff1a, "假").toString(),
-//                        getSchemeCalendar(y, m, 25, 0xFF1aff1a, "假"));
-//                map.put(getSchemeCalendar(y, m, 26, 0xFF40db25, "议").toString(),
-//                        getSchemeCalendar(y, m, 26, 0xFF40db25, "议"));
-//                map.put(getSchemeCalendar(y, m, 27, 0xFF95af1a, "假").toString(),
-//                        getSchemeCalendar(y, m, 27, 0xFF95af1a, "假"));
-//                map.put(getSchemeCalendar(y, m, 28, 0xFF40db25, "码").toString(),
-//                        getSchemeCalendar(y, m, 28, 0xFF40db25, "码"));
-//            }
-//        }
-//
-//        //28560 数据量增长不会影响UI响应速度，请使用这个API替换
-//        mCalendarView.setSchemeDate(map);
-//
-//        //可自行测试性能差距
-//        //mCalendarView.setSchemeDate(schemes);
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -77,6 +78,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         holder.noteDateTv.setText(mData.get(position).date);
         holder.noteTitleTv.setText(mData.get(position).title);
         holder.noteContentTv.setText(mData.get(position).content);
+        holder.stateView.setChecked(mData.get(position).state == 1);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +124,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         TextView noteDateTv;
         TextView noteTitleTv;
         TextView noteContentTv;
+        CheckBox stateView;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -129,6 +132,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             noteDateTv = itemView.findViewById(R.id.note_date);
             noteTitleTv = itemView.findViewById(R.id.note_title);
             noteContentTv = itemView.findViewById(R.id.note_content);
+            stateView = itemView.findViewById(R.id.note_state);
         }
     }
 }
