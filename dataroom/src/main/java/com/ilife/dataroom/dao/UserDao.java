@@ -28,21 +28,20 @@ public interface UserDao {
     long[] insertAllUser(List<UserModel> userModels);
 
     @Query("SELECT * FROM " + UserModel.USER_TABLE_NAME + " WHERE " +
-            UserModel.NAME + " = :name")
-    LiveData<UserModel> queryByNameLv(String name);
-
-
-    @Query("SELECT * FROM " + UserModel.USER_TABLE_NAME + " WHERE " +
-            UserModel.NAME + " = :name")
-    UserModel queryByNameModel(String name);
-
-    @Query("SELECT * FROM " + UserModel.USER_TABLE_NAME + " WHERE " +
             UserModel.USER_ID + " = :userId")
     LiveData<UserModel> queryByUserIdLv(long userId);
 
     @Query("SELECT * FROM " + UserModel.USER_TABLE_NAME + " WHERE " +
             UserModel.USER_ID + " = :userId")
-    UserModel queryByUserIdModel(long userId);
+    UserModel queryByUserId(long userId);
+
+    @Query("SELECT * FROM " + UserModel.USER_TABLE_NAME + " WHERE " +
+            UserModel.PHONE + " = :phone")
+    UserModel queryByPhone(String phone);
+
+    @Query("SELECT * FROM " + UserModel.USER_TABLE_NAME + " WHERE " +
+            UserModel.NAME + " = :name")
+    UserModel queryByName(String name);
 
     @Query("SELECT * FROM " + UserModel.USER_TABLE_NAME)
     LiveData<List<UserModel>> queryAllByLv();

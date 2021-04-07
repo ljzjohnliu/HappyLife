@@ -2,6 +2,7 @@ package com.ilife.happy.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -23,9 +24,11 @@ import com.ilife.dataroom.RoomDemoDatabase;
 import com.ilife.dataroom.dao.NoteDao;
 import com.ilife.dataroom.model.NoteModel;
 import com.ilife.happy.R;
+import com.ilife.happy.activity.LoginActivity;
 import com.ilife.happy.activity.NewNoteActivity;
 import com.ilife.happy.adapter.NoteAdapter;
 import com.ilife.happy.contract.IHomeContract;
+import com.ilife.happy.manager.AccountManager;
 import com.ilife.happy.presenter.HomePresenter;
 import com.ilife.happy.utils.CalendarUtils;
 import com.ilife.happy.utils.DateUtil;
@@ -210,6 +213,10 @@ public class HomeFragment extends BaseFragment<HomePresenter, IHomeContract.View
         mTextMonthDay.setText(mCalendarView.getCurMonth() + "月" + mCalendarView.getCurDay() + "日");
         mTextLunar.setText("今日");
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
+
+        if (!AccountManager.getInstance().isLogin()) {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+        }
     }
 
     private void initCalendarData(List<NoteModel> noteDatas) {

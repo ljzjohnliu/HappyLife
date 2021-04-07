@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RoomActivity extends AppCompatActivity {
+public class RoomUserActivity extends AppCompatActivity {
 
     private RoomDemoDatabase roomDemoDatabase;
     private UserDao userDao;
@@ -70,23 +70,23 @@ public class RoomActivity extends AppCompatActivity {
     }
 
     private void addOne() {
-        UserModel user = new UserModel(10005, "小小兄");
+        UserModel user = new UserModel("13248068695", "555555","小小兄");
         userDao.insertOneUser(user);
         show();
     }
 
     private void addMulti() {
-        UserModel user1 = new UserModel(10001, "小白");
-        UserModel user2 = new UserModel(10002, "李指");
-        UserModel user3 = new UserModel(10003, "腿哥");
-        UserModel user4 = new UserModel(10004, "小黑");
+        UserModel user1 = new UserModel("13248068691", "111111", "小白");
+        UserModel user2 = new UserModel("13248068692", "222222", "李指");
+        UserModel user3 = new UserModel("13248068693", "333333", "腿哥");
+        UserModel user4 = new UserModel("13248068694", "444444", "小黑");
 
         userDao.insertUser(user1, user2, user3, user4);
         show();
     }
 
     private void update() {
-        UserModel user = userDao.queryByUserIdModel(10003);
+        UserModel user = userDao.queryByPhone("13248068691");
         user.name = "腿哥222";
         userDao.updateUser(user);
         show();

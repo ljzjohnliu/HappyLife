@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/aphorisms"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcome"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="12dp"
+        android:text="@string/aphorisms_author"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:id="@+id/account_login"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/login_layout_bg"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/login_input_bg"
+            android:hint="@string/login_phone_hint"
+            android:inputType="phone|number"
+            android:paddingLeft="20dp"
+            android:textColor="@color/color_99232335"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/login_input_bg"
+            android:hint="@string/login_pwd_hint"
+            android:inputType="phone|number"
+            android:paddingLeft="20dp"
+            android:textColor="@color/color_99232335"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/forget_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:drawableLeft="@mipmap/ic_wjmm"
+            android:paddingLeft="8dp"
+            android:text="@string/forget_pwd"
+            android:textColor="@color/color_232335"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/bt_account_login"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/login_btn_bg"
+            android:text="@string/login"
+            android:textColor="@color/color_99232335"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/switch_register_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/transparent"
+            android:text="@string/goto_register"
+            android:textColor="@color/color_232335"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/register_account_layout"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/login_layout_bg"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/phone_num"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/login_input_bg"
+            android:hint="@string/login_phone_hint"
+            android:inputType="phone|number"
+            android:paddingLeft="20dp"
+            android:textColor="@color/color_99232335"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp">
+
+            <EditText
+                android:id="@+id/verify_code"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/login_input_bg"
+                android:hint="@string/login_verify_hint"
+                android:inputType="number"
+                android:paddingLeft="20dp"
+                android:textColor="@color/color_99232335"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bt_verify_code"
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/verify_code_bg"
+                android:text="@string/obtain_verify_code"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/input_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/login_input_bg"
+            android:hint="@string/login_pwd_hint"
+            android:inputType="phone|number"
+            android:paddingLeft="20dp"
+            android:textColor="@color/color_99232335"
+            android:textSize="16sp" />
+
+
+        <Button
+            android:id="@+id/register_new_account"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/login_btn_bg"
+            android:text="@string/register"
+            android:textColor="@color/color_99232335"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/switch_account_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/transparent"
+            android:text="@string/account_login"
+            android:textColor="@color/color_232335"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/privacy_statement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/transparent"
+            android:padding="20dp"
+            android:text="@string/shengming"
+            android:textColor="@color/color_232335"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+</RelativeLayout>
