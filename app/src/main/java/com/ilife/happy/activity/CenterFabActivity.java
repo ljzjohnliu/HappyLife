@@ -19,6 +19,7 @@ import com.ilife.happy.R;
 import com.ilife.happy.fragment.BaseFragment2;
 import com.ilife.happy.fragment.HomeFragment;
 import com.ilife.happy.fragment.MineFragment;
+import com.ilife.happy.fragment.WeatherFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class CenterFabActivity extends BaseSimpleActivity {
 
         Bundle bundle;
         // create weather fragment and add it
-        BaseFragment2 weatherFragment = new BaseFragment2();
+        WeatherFragment weatherFragment = new WeatherFragment();
         bundle = new Bundle();
         bundle.putString("title", getString(R.string.weather));
         weatherFragment.setArguments(bundle);
@@ -111,6 +112,10 @@ public class CenterFabActivity extends BaseSimpleActivity {
                         break;
                     case R.id.i_weather:
                         position = 1;
+                        WeatherFragment mWeatherFragment = (WeatherFragment) fragments.get(1);
+                        Bundle bundle = new Bundle();
+                        bundle.putBoolean("weatherSelected",true);;
+                        mWeatherFragment.setArguments(bundle);
                         break;
                     case R.id.i_favor:
                         position = 2;
