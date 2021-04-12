@@ -13,6 +13,11 @@ import retrofit2.http.POST;
 public interface LoginRegistryInterface {
 
     @FormUrlEncoded
+    @POST("LoginServlet")
+    Observable<BaseResponse<JSONObject>> login(
+            @Field("username") String username, @Field("password") String password);
+
+    @FormUrlEncoded
     @POST("h/sms/sendVerificationCode")
     Observable<BaseResponse<JSONObject>> sendVerificationCode(
             @Field("phone") String phoneNum, @Field("sms_biz_type") String bizType);

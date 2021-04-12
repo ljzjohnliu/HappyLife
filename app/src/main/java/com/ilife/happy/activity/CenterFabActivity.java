@@ -92,7 +92,7 @@ public class CenterFabActivity extends BaseSimpleActivity {
         bottomNavigationViewEx.setTextSize(12);
 
         initEvent();
-        startActivity(new Intent(this, LoginActivity.class));
+//        startActivity(new Intent(this, LoginActivity.class));
     }
 
     /**

@@ -17,6 +17,7 @@ import com.ilife.common.GlobalActivityMgr;
 import com.ilife.common.connection.NetworkInfoProvider;
 import com.ilife.common.http.HttpClient;
 import com.ilife.happy.crash.ILifeUncaughtException;
+import com.ilife.networkapi.api.ApisManager;
 import com.tencent.mmkv.MMKV;
 
 import org.greenrobot.eventbus.EventBus;
@@ -73,6 +74,8 @@ public class ILifeApplication extends Application implements GlobalActivityMgr.O
         initMMKV();
         subRouteWatch.stop();
         Log.d(TIME_TRACE, "mmkv init time lapse = " + subRouteWatch.elapsed(TimeUnit.MILLISECONDS));
+
+        ApisManager.init();
 
         /**
          * init Fresco
