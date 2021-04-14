@@ -51,7 +51,7 @@ public class HttpClient {
         return retrofit;
     }
 
-    public Retrofit getWeatherRetrofit(String baseUrl) {
+    public Retrofit getCustomRetrofit(String baseUrl) {
         retrofit = builder.baseUrl(baseUrl).build();
         return retrofit;
     }

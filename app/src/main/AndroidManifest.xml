@@ -38,6 +38,9 @@
         <activity
             android:name=".activity.NewNoteActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.TestNetApiAvtivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
