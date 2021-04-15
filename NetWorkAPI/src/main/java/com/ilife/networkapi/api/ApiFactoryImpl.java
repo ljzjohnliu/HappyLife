@@ -1,6 +1,7 @@
 package com.ilife.networkapi.api;
 
 import com.ilife.common.http.HttpClient;
+import com.ilife.networkapi.ConstantUrl;
 import com.ilife.networkapi.http.LoginRegistryInterface;
 import com.ilife.networkapi.http.WeatherInterface;
 
@@ -17,7 +18,7 @@ public class ApiFactoryImpl extends IApiFactory {
             Retrofit qxRetrofit = HttpClient.getInstance().getRetrofit();
             return qxRetrofit.create(cls);
         } else if (cls == WeatherInterface.class) {
-            Retrofit qxRetrofit = HttpClient.getInstance().getCustomRetrofit("http://www.weather.com.cn/");
+            Retrofit qxRetrofit = HttpClient.getInstance().getCustomRetrofit(ConstantUrl.HE_FENG_WEATHER_BASE_URL);
             return qxRetrofit.create(cls);
         } else {
             throw new UnsupportedOperationException("Unsupported Api class Type");

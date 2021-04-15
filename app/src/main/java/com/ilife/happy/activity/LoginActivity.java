@@ -1,6 +1,5 @@
 package com.ilife.happy.activity;
 
-import android.content.Intent;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -95,7 +94,6 @@ public class LoginActivity extends BaseSimpleActivity {
                     AccountManager.getInstance().initUserDao(this);
                     if (AccountManager.getInstance().registerAccount(phoneNum, verifyCode, password)) {
                         Toast.makeText(LoginActivity.this, getString(R.string.register_success), Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(this, CenterFabActivity.class));
                         finish();
                     } else {
                         Toast.makeText(LoginActivity.this, getString(R.string.register_failed), Toast.LENGTH_SHORT).show();
