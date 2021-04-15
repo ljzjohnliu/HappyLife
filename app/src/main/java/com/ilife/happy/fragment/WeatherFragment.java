@@ -24,14 +24,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.ilife.common.basemvp.BaseFragment;
 import com.ilife.happy.R;
 import com.ilife.happy.bean.AddressBean;
 import com.ilife.happy.bean.WeatherInfo;
+import com.ilife.happy.bean.WeatherInfoData;
 import com.ilife.happy.contract.IWeatherContract;
 import com.ilife.happy.presenter.WeatherPresenter;
+import com.ilife.happy.utils.Constants;
 import com.ilife.happy.utils.IntentUtil;
 import com.ilife.happy.utils.SettingUtils;
+import com.ilife.networkapi.api.ApisManager;
+import com.ilife.networkapi.http.WeatherInterface;
 
 import android.location.Geocoder;
 
@@ -39,35 +45,42 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class WeatherFragment extends BaseFragment<WeatherPresenter, IWeatherContract.View> {
     public static String TAG = "WeatherFragment";
     public static int REQUEST_CODE_LOCATION = 1001;
     String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
 
+    private double mLongitude;
+    private double mLatitude;
     private WeatherPresenter mWeatherPresenter;
 
     private Button mGpsBtn;
     private TextView mGpsTxt;
+    private TextView mWeatherTemTxt;
 
     private Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
             AddressBean mAddressBean = (AddressBean) msg.obj;
-            double longitude = mAddressBean.getLongitude();// 经度
-            double latitude = mAddressBean.getLatitude();// 纬度
-            Log.d(TAG, "handleMessage:   longitude   " + longitude + " latitude   " + latitude);
+            mLongitude = mAddressBean.getLongitude();// 经度
+            mLatitude = mAddressBean.getLatitude();// 纬度
+            Log.d(TAG, "handleMessage:   longitude   " + mLongitude + " latitude   " + mLatitude);
             Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
             List<Address> result = null;
             try {
-                result = geocoder.getFromLocation(latitude, longitude, 1);
-                if(result != null){
+                result = geocoder.getFromLocation(mLatitude, mLongitude, 1);
+                if (result != null) {
                     Log.d(TAG, "handleMessage:   result   " + result.get(0));
+                    Log.d(TAG, "handleMessage:   result===   " );
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
+            String location = mLongitude + "," + mLatitude;
+            mWeatherPresenter.getContract().weatherApi(location);
         }
     };
 
@@ -75,8 +88,12 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter, IWeatherCont
     public IWeatherContract.View getContract() {
         return new IWeatherContract.View() {
             @Override
-            public void onResult(WeatherInfo weatherInfo) {
-                Log.d(TAG, "onResult: weatherInfo code = " + weatherInfo.getCode() + ", getType = " + weatherInfo.getType() + ", msg = " + weatherInfo.getMsg() + ", isSuccess = " + weatherInfo.isSuccess());
+            public void onResult(WeatherInfoData weatherInfo) {
+                Log.d(TAG, "onResult: weatherInfo code = "+weatherInfo.getmWeatherInfo().getCode() );
+                WeatherInfo mWeatherInfo = weatherInfo.getmWeatherInfo();
+                WeatherInfo.Now mNow = mWeatherInfo.getNow();
+                String temp = mNow.getTemp();
+                mWeatherTemTxt.setText(temp);
             }
         };
     }
@@ -98,6 +115,7 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter, IWeatherCont
     protected void initView() {
         mGpsBtn = mRootView.findViewById(R.id.gps_btn);
         mGpsTxt = mRootView.findViewById(R.id.gps_txt);
+        mWeatherTemTxt = mRootView.findViewById(R.id.temperature_txt);
 
         mGpsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +128,7 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter, IWeatherCont
                 }
             }
         });
+
     }
 
     @Override
@@ -123,6 +142,20 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter, IWeatherCont
         }
     }
 
+
+    public void getWeatherData() {
+//        String location = mLongitude + "," + mLatitude;
+//        ApisManager.getInstance().getApi(WeatherInterface.class).getHeWeaterUseRxjavaAsJson(location)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(response -> {
+//                    Log.d("TAG", "WeatherFragment: response = " + response);
+//                    WeatherInfo gson = new Gson().fromJson(response, new TypeToken<WeatherInfo>() {}.getType());
+//                    Log.d(TAG, "getWeatherData: ");
+//                }, throwable -> {
+//                    Log.d("TAG", "WeatherFragment: throwable = " + throwable.getMessage());
+//                });
+    }
 
     public boolean isLocationServiceEnabled() {
         LocationManager mLocationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);

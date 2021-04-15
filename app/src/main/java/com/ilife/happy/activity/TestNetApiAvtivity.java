@@ -125,14 +125,14 @@ public class TestNetApiAvtivity extends AppCompatActivity {
     }
 
     private void getWeaterAsWeatherInfo() {
-        ApisManager.getInstance().getApi(WeatherInterface.class).getWeaterAsWeatherInfo()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(response -> {
-                    Log.d(TAG, "getWeaterAsWeatherInfo: response = " + response);
-                    resultTv.setText(response.toString());
-                }, throwable -> {
-                    Log.d(TAG, "getWeaterAsWeatherInfo: throwable = " + throwable.getMessage());
-                });
+//        ApisManager.getInstance().getApi(WeatherInterface.class).getWeaterAsWeatherInfo()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(response -> {
+//                    Log.d(TAG, "getWeaterAsWeatherInfo: response = " + response);
+//                    resultTv.setText(response.toString());
+//                }, throwable -> {
+//                    Log.d(TAG, "getWeaterAsWeatherInfo: throwable = " + throwable.getMessage());
+//                });
     }
 }
