@@ -18,6 +18,19 @@ public class ApiFactoryImpl extends IApiFactory {
             Retrofit qxRetrofit = HttpClient.getInstance().getRetrofit();
             return qxRetrofit.create(cls);
         } else if (cls == WeatherInterface.class) {
+            Retrofit qxRetrofit = HttpClient.getInstance().getCustomRetrofit("http://www.weather.com.cn/");
+            return qxRetrofit.create(cls);
+        } else {
+            throw new UnsupportedOperationException("Unsupported Api class Type");
+        }
+    }
+
+    @Override
+    public <T> T makeWeatherApiClient(Class<T> cls) {
+        if (cls == LoginRegistryInterface.class) {
+            Retrofit qxRetrofit = HttpClient.getInstance().getRetrofit();
+            return qxRetrofit.create(cls);
+        } else if (cls == WeatherInterface.class) {
             Retrofit qxRetrofit = HttpClient.getInstance().getCustomRetrofit(ConstantUrl.HE_FENG_WEATHER_BASE_URL);
             return qxRetrofit.create(cls);
         } else {

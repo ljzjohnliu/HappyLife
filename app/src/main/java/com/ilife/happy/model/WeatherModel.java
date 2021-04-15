@@ -27,7 +27,7 @@ public class WeatherModel extends BaseModel<WeatherPresenter, IWeatherContract.M
             @Override
             public void executeWeatherApi(String location) throws Exception {
                 Log.d("TAG", "executeWeatherApi: location = " + location);
-                ApisManager.getInstance().getApi(WeatherInterface.class).getHeWeaterUseRxjavaAsJson(location)
+                ApisManager.getInstance().getWeatherApi(WeatherInterface.class).getHeWeaterUseRxjavaAsJson(location)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(response -> {
