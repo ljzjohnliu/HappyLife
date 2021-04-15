@@ -142,21 +142,6 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter, IWeatherCont
         }
     }
 
-
-    public void getWeatherData() {
-//        String location = mLongitude + "," + mLatitude;
-//        ApisManager.getInstance().getApi(WeatherInterface.class).getHeWeaterUseRxjavaAsJson(location)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(response -> {
-//                    Log.d("TAG", "WeatherFragment: response = " + response);
-//                    WeatherInfo gson = new Gson().fromJson(response, new TypeToken<WeatherInfo>() {}.getType());
-//                    Log.d(TAG, "getWeatherData: ");
-//                }, throwable -> {
-//                    Log.d("TAG", "WeatherFragment: throwable = " + throwable.getMessage());
-//                });
-    }
-
     public boolean isLocationServiceEnabled() {
         LocationManager mLocationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
         boolean networkEnable = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
