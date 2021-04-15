@@ -5,5 +5,7 @@ package com.ilife.networkapi.api;
  */
 public abstract class IApiFactory {
   public abstract <T> T makeApiClient(Class<T> cls);
+
+  public abstract <T> T makeWeatherApiClient(Class<T> cls);
 }
 
