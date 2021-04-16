@@ -11,7 +11,7 @@ import com.ilife.happy.bean.WeatherInfoData;
 import com.ilife.happy.contract.IWeatherContract;
 import com.ilife.happy.presenter.WeatherPresenter;
 import com.ilife.networkapi.api.ApisManager;
-import com.ilife.networkapi.http.WeatherInterface;
+import com.ilife.networkapi.http.HeWeatherInterface;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -27,7 +27,7 @@ public class WeatherModel extends BaseModel<WeatherPresenter, IWeatherContract.M
             @Override
             public void executeWeatherApi(String location) throws Exception {
                 Log.d("TAG", "executeWeatherApi: location = " + location);
-                ApisManager.getInstance().getWeatherApi(WeatherInterface.class).getHeWeaterUseRxjavaAsJson(location)
+                ApisManager.getInstance().getApi(HeWeatherInterface.class).getHeWeaterUseRxjavaAsJson(location)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(response -> {

@@ -37,14 +37,4 @@ public class ApisManager {
         }
         return (T) apiObject;
     }
-
-
-    public <T> T getWeatherApi(Class<T> cls) {
-        Object apiObject = apiCache.get(cls);
-        if (null == apiObject) {
-            apiObject = apiFactory.makeWeatherApiClient(cls);
-            apiCache.put(cls, apiObject);
-        }
-        return (T) apiObject;
-    }
 }

@@ -28,8 +28,4 @@ public interface WeatherInterface {
 
     @GET("data/cityinfo/101020100.html")
     Observable<JsonObject> getWeaterUseRxjavaAsJson();
-
-    @GET("v7/weather/now?key=55d18cc792074a2faa4d4578382ada7d")
-    Observable<JsonObject> getHeWeaterUseRxjavaAsJson(@Query("location") String location);
-
 }
