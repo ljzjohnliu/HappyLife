@@ -28,4 +28,7 @@ public interface WeatherInterface {
 
     @GET("data/cityinfo/101020100.html")
     Observable<JsonObject> getWeaterUseRxjavaAsJson();
+
+    @GET("data/cityinfo/101020100.html")
+    Observable<WeatherInfoData> getWeaterAsWeatherInfo();
 }
