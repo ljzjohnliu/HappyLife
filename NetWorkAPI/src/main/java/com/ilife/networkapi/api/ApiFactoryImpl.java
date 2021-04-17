@@ -2,9 +2,10 @@ package com.ilife.networkapi.api;
 
 import com.ilife.common.http.HttpClient;
 import com.ilife.networkapi.ConstantUrl;
-import com.ilife.networkapi.http.LoginRegistryInterface;
-import com.ilife.networkapi.http.WeatherInterface;
 import com.ilife.networkapi.http.HeWeatherInterface;
+import com.ilife.networkapi.http.LoginRegistryInterface;
+import com.ilife.networkapi.http.TianApiInterface;
+import com.ilife.networkapi.http.WeatherInterface;
 
 import retrofit2.Retrofit;
 
@@ -24,18 +25,8 @@ public class ApiFactoryImpl extends IApiFactory {
         } else if (cls == HeWeatherInterface.class) {
             Retrofit qxRetrofit = HttpClient.getInstance().getCustomRetrofit(ConstantUrl.HE_FENG_WEATHER_BASE_URL);
             return qxRetrofit.create(cls);
-        } else {
-            throw new UnsupportedOperationException("Unsupported Api class Type");
-        }
-    }
-
-    @Override
-    public <T> T makeWeatherApiClient(Class<T> cls) {
-        if (cls == LoginRegistryInterface.class) {
-            Retrofit qxRetrofit = HttpClient.getInstance().getRetrofit();
-            return qxRetrofit.create(cls);
-        } else if (cls == WeatherInterface.class) {
-            Retrofit qxRetrofit = HttpClient.getInstance().getCustomRetrofit(ConstantUrl.HE_FENG_WEATHER_BASE_URL);
+        } else if (cls == TianApiInterface.class) {
+            Retrofit qxRetrofit = HttpClient.getInstance().getCustomRetrofit(ConstantUrl.FAMOUS_APHORISM_BASE_URL);
             return qxRetrofit.create(cls);
         } else {
             throw new UnsupportedOperationException("Unsupported Api class Type");

@@ -74,7 +74,6 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter, IWeatherCont
                 result = geocoder.getFromLocation(mLatitude, mLongitude, 1);
                 if (result != null) {
                     Log.d(TAG, "handleMessage:   result   " + result.get(0));
-                    Log.d(TAG, "handleMessage:   result===   " );
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -141,6 +140,7 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter, IWeatherCont
             }
         }
     }
+
 
     public boolean isLocationServiceEnabled() {
         LocationManager mLocationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
