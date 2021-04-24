@@ -3,13 +3,12 @@ package com.ilife.happy.fragment;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -24,8 +23,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.ilife.common.basemvp.BaseFragment;
 import com.ilife.happy.R;
 import com.ilife.happy.bean.AddressBean;
@@ -33,20 +30,13 @@ import com.ilife.happy.bean.WeatherInfo;
 import com.ilife.happy.bean.WeatherInfoData;
 import com.ilife.happy.contract.IWeatherContract;
 import com.ilife.happy.presenter.WeatherPresenter;
-import com.ilife.happy.utils.Constants;
 import com.ilife.happy.utils.IntentUtil;
 import com.ilife.happy.utils.SettingUtils;
-import com.ilife.networkapi.api.ApisManager;
-import com.ilife.networkapi.http.WeatherInterface;
-
-import android.location.Geocoder;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class WeatherFragment extends BaseFragment<WeatherPresenter, IWeatherContract.View> {
     public static String TAG = "WeatherFragment";
@@ -79,7 +69,7 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter, IWeatherCont
                 e.printStackTrace();
             }
             String location = mLongitude + "," + mLatitude;
-            mWeatherPresenter.getContract().weatherApi(location);
+            mWeatherPresenter.getContract().weatherApi("1", location);
         }
     };
 
@@ -87,12 +77,17 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter, IWeatherCont
     public IWeatherContract.View getContract() {
         return new IWeatherContract.View() {
             @Override
-            public void onResult(WeatherInfoData weatherInfo) {
-                Log.d(TAG, "onResult: weatherInfo code = "+weatherInfo.getmWeatherInfo().getCode() );
+            public void onResult(String type, WeatherInfoData weatherInfo) {
+                Log.d(TAG, "onResult: weatherInfo code = " + weatherInfo.getmWeatherInfo().getCode());
                 WeatherInfo mWeatherInfo = weatherInfo.getmWeatherInfo();
                 WeatherInfo.Now mNow = mWeatherInfo.getNow();
                 String temp = mNow.getTemp();
                 mWeatherTemTxt.setText(temp);
+            }
+
+            @Override
+            public void fail(String type, String t) {
+                Log.d(TAG, "fail: 错误信息  " + t);
             }
         };
     }
@@ -125,6 +120,7 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter, IWeatherCont
                 } else {
                     Toast.makeText(getContext(), "定位失败", Toast.LENGTH_LONG).show();
                 }
+//                mian();
             }
         });
 
@@ -222,7 +218,7 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter, IWeatherCont
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             //获取到了权限
-
+            getLocation();
         } else {
             //权限被拒绝
             new AlertDialog.Builder(getContext())
@@ -247,5 +243,24 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter, IWeatherCont
     public void onDestroy() {
         super.onDestroy();
         mHandler.removeCallbacksAndMessages(null);
+    }
+
+    public void mian() {
+        List<String> images = new ArrayList<String>();
+        images.add("AAAA");
+        images.add("BBBB");
+        images.add("CCCC");
+        images.add("DDDD");
+        images.add("EEEE");
+
+        System.out.println("main image 1 is = " + images.get(1));
+
+        for (int i = 0; i < images.size(); i = i++) {
+            if (i == 1)
+                continue;
+            System.out.println("main image " + i + "is = " + images.get(i));
+
+        }
+
     }
 }
