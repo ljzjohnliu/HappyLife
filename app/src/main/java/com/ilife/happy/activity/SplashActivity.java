@@ -8,8 +8,12 @@ import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.room.Room;
 
 import com.ilife.common.base.BaseSimpleActivity;
+import com.ilife.dataroom.RoomDemoDatabase;
+import com.ilife.dataroom.dao.FamousAphorismDao;
+import com.ilife.dataroom.model.FamousAphorismModel;
 import com.ilife.happy.R;
 import com.ilife.networkapi.api.ApisManager;
 import com.ilife.networkapi.http.TianApiInterface;
@@ -31,6 +35,9 @@ public class SplashActivity extends BaseSimpleActivity {
     private TextView mFamousNameTxt;
     private TextView mCountTxt;
 
+    private RoomDemoDatabase roomDemoDatabase;
+    private FamousAphorismDao mFamousAphorismDao;
+
     private Handler mHandle = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -39,7 +46,7 @@ public class SplashActivity extends BaseSimpleActivity {
             if (count >= 0) {
                 mCountTxt.setText(count + "秒");
                 if(count == 0){
-                    gotoMian();
+//                    gotoMian();
                 }
             }
 
@@ -51,6 +58,7 @@ public class SplashActivity extends BaseSimpleActivity {
         return R.layout.activity_splash_layout;
     }
 
+
     @Override
     protected void initView() {
         mFamousTxt = findViewById(R.id.famous_content_txt);
@@ -61,6 +69,8 @@ public class SplashActivity extends BaseSimpleActivity {
 
     @Override
     protected void initData() {
+        roomDemoDatabase = Room.databaseBuilder(this, RoomDemoDatabase.class, "word_database").allowMainThreadQueries().build();
+        mFamousAphorismDao = roomDemoDatabase.famousAphorismDao();
         count = 5;
         getFamousData();
         Timer timer = new Timer();
@@ -84,31 +94,60 @@ public class SplashActivity extends BaseSimpleActivity {
         startActivity(intent);
     }
     public void getFamousData() {
-        String num = "10";
-        ApisManager.getInstance().getApi(TianApiInterface.class).getFamousAphorismData(num)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(response -> {
-                    Log.d(TAG, "testNetLogin: response = " + response);
-                    if (response != null && response.getCode() == 200) {
-                        List<FamousData.FamousContentData> listData = response.getNewslist();
-                        if (listData != null) {
-                            FamousData.FamousContentData data = listData.get(0);
-                            String mContent = data.getContent();
-                            String name = data.getMrname();
-                            if (!TextUtils.isEmpty(mContent)) {
-                                mFamousTxt.setText("     " + mContent);
+        int count = mFamousAphorismDao.count();
+        Log.d(TAG, "getFamousData: 数据库中名言警句 count  " + count);
+        queryAllData();
+        FamousAphorismModel queryModelData = mFamousAphorismDao.queryFamousAphorism(false);
+        if(queryModelData != null){
+            Log.d(TAG, "getFamousData: 查询数据库中未读取的数据======");
+            showFamousAphorism(queryModelData.content,queryModelData.mrName);
+            queryModelData.showTag = true;
+            mFamousAphorismDao.updateFamousAphorism(queryModelData);
+        }else{
+            Log.d(TAG, "getFamousData: 请求名言警句api====");
+            String num = "10";
+            ApisManager.getInstance().getApi(TianApiInterface.class).getFamousAphorismData(num)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(response -> {
+                        Log.d(TAG, "testNetLogin: response = " + response);
+                        if (response != null && response.getCode() == 200) {
+                            List<FamousData.FamousContentData> listData = response.getNewslist();
+                            if (listData != null) {
+                                FamousData.FamousContentData data = listData.get(0);
+                                String mContent = data.getContent();
+                                String name = data.getMrname();
+                                showFamousAphorism(mContent,name);
                             }
-                            if (!TextUtils.isEmpty(name)) {
-                                mFamousNameTxt.setText("——" + name);
+                            for (int i = 1; i < listData.size(); i++) {
+                                FamousAphorismModel model = new FamousAphorismModel(listData.get(i).getContent(),listData.get(i).getMrname(),false);
+                                mFamousAphorismDao.insertOneFamousAphorism(model);
                             }
+                            queryAllData();
                         }
-                    }
-                }, throwable -> {
-                    Log.d(TAG, "testNetLogin: throwable = " + throwable.getMessage());
-                });
+                    }, throwable -> {
+                        Log.d(TAG, "testNetLogin: throwable = " + throwable.getMessage());
+                    });
+        }
+
     }
 
+    public void queryAllData(){
+        List<FamousAphorismModel> models = mFamousAphorismDao.queryAll();
+        for (int i = 0; i < models.size(); i++){
+            FamousAphorismModel modelData = models.get(i);
+            Log.d(TAG, "queryAllData 查询数据的数据 getFamousData: content  " +modelData.content + "  mrName   " +modelData.mrName+"  showTag  " +modelData.showTag);
+        }
+    }
+
+    public void showFamousAphorism(String content,String name){
+        if (!TextUtils.isEmpty(content)) {
+            mFamousTxt.setText("     " + content);
+        }
+        if (!TextUtils.isEmpty(name)) {
+            mFamousNameTxt.setText("——" + name);
+        }
+    }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
