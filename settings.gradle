@@ -4,4 +4,5 @@ include ':NetWorkAPI'
 include ':widget'
 include ':calendarview'
 include ':dataroom'
+include ':customview'
 rootProject.name = "HappyLife"
