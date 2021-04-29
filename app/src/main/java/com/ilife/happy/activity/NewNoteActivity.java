@@ -11,8 +11,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.room.Room;
-
 import com.ilife.common.base.BaseSimpleActivity;
 import com.ilife.dataroom.RoomDemoDatabase;
 import com.ilife.dataroom.dao.NoteDao;
@@ -70,7 +68,7 @@ public class NewNoteActivity extends BaseSimpleActivity {
             noteDateFromCalendar = getIntent().getStringExtra(NOTE_DATE);
         }
         Log.d(TAG, "initView: noteDateFromCalendar = " + noteDateFromCalendar);
-        roomDemoDatabase = Room.databaseBuilder(this, RoomDemoDatabase.class, "word_database").allowMainThreadQueries().build();
+        roomDemoDatabase = RoomDemoDatabase.getInstance(this);
         noteDao = roomDemoDatabase.noteDao();
 
         //自定义适配器，将其设置给spinner

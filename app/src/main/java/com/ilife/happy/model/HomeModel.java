@@ -27,7 +27,7 @@ public class HomeModel extends BaseModel<HomePresenter, IHomeContract.Model> {
         return new IHomeContract.Model() {
             @Override
             public List<NoteModel> queryAllNote(Context context) {
-                roomDemoDatabase = Room.databaseBuilder(context, RoomDemoDatabase.class, "word_database").allowMainThreadQueries().build();
+                roomDemoDatabase = RoomDemoDatabase.getInstance(context);
                 noteDao = roomDemoDatabase.noteDao();
                 return noteDao.queryAll();
             }

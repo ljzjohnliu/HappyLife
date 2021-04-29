@@ -56,7 +56,7 @@ public class RoomUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_room);
         ButterKnife.bind(this);
 
-        roomDemoDatabase = Room.databaseBuilder(this, RoomDemoDatabase.class, "word_database").allowMainThreadQueries().build();
+        roomDemoDatabase = RoomDemoDatabase.getInstance(this);
         userDao = roomDemoDatabase.userDao();
     }
 

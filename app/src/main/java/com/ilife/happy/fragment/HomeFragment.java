@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.CalendarLayout;
@@ -105,7 +104,7 @@ public class HomeFragment extends BaseFragment<HomePresenter, IHomeContract.View
 
     @Override
     protected void initView() {
-        roomDemoDatabase = Room.databaseBuilder(getActivity(), RoomDemoDatabase.class, "word_database").allowMainThreadQueries().build();
+        roomDemoDatabase = RoomDemoDatabase.getInstance(getActivity());
         noteDao = roomDemoDatabase.noteDao();
 
         LinearLayoutManager noteLayoutManager = new LinearLayoutManager(getActivity());

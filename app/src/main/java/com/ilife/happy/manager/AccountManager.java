@@ -41,7 +41,7 @@ public class AccountManager {
 
     public void initUserDao(Context context) {
         if (userDao == null) {
-            roomDemoDatabase = Room.databaseBuilder(context, RoomDemoDatabase.class, "word_database").allowMainThreadQueries().build();
+            roomDemoDatabase = RoomDemoDatabase.getInstance(context);
             userDao = roomDemoDatabase.userDao();
         }
     }

@@ -46,7 +46,7 @@ public class SplashActivity extends BaseSimpleActivity {
             if (count >= 0) {
                 mCountTxt.setText(count + "秒");
                 if(count == 0){
-//                    gotoMian();
+                    gotoMian();
                 }
             }
 
@@ -69,7 +69,7 @@ public class SplashActivity extends BaseSimpleActivity {
 
     @Override
     protected void initData() {
-        roomDemoDatabase = Room.databaseBuilder(this, RoomDemoDatabase.class, "word_database").allowMainThreadQueries().build();
+        roomDemoDatabase = RoomDemoDatabase.getInstance(this);
         mFamousAphorismDao = roomDemoDatabase.famousAphorismDao();
         count = 5;
         getFamousData();
