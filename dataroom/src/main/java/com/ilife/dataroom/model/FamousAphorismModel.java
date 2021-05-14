@@ -21,6 +21,8 @@ public class FamousAphorismModel {
 
     public static final String SHOW_TAG = "showTag";
 
+    public static final String SHOW_TAG2 = "showTag2";
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = CONTENT_ID)
     public long contentId;
@@ -33,6 +35,9 @@ public class FamousAphorismModel {
 
     @ColumnInfo(name = SHOW_TAG)
     public boolean showTag;
+
+    @ColumnInfo(name = SHOW_TAG2)
+    public int showTag2;
 
     public FamousAphorismModel(String content, String mrName, boolean showTag) {
         this.content = content;

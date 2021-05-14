@@ -20,7 +20,7 @@ import com.ilife.dataroom.model.UserModel;
 @Database(entities = {
         UserModel.class, NoteModel.class, FamousAphorismModel.class
 },
-        version = 1, exportSchema = true)
+        version = 2, exportSchema = true)
 public abstract class RoomDemoDatabase extends RoomDatabase {
 
     public static final String DATABASE_NAME = "room_ilife";
@@ -45,6 +45,16 @@ public abstract class RoomDemoDatabase extends RoomDatabase {
         return sInstance;
     }
 
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            Log.d("TAG", "migrate: **********update famous_aphorism_table********database = " + database);
+            //此处对于数据库中的所有更新都需要写下面的代码
+            database.execSQL("ALTER TABLE famous_aphorism_table "
+                    + " ADD COLUMN showTag2 INTEGER NOT NULL DEFAULT 0");
+        }
+    };
+
     /**
      * 执行 fallbackToDestructiveMigration()  Room启动时将检测version是否发生增加，如果有，
      * 那么将找到Migration去执行特定的操作。如果没有因为 fallbackToDestructiveMigration()。将会删除数据库并重建（此时的确不会crash，但所有数据丢失。）
@@ -53,6 +63,7 @@ public abstract class RoomDemoDatabase extends RoomDatabase {
      * @return
      */
     private static RoomDemoDatabase buildDatabase(final Context appContext) {
+        Log.d("TAG", "buildDatabase: ************buildDatabase*************");
         return Room.databaseBuilder(appContext, RoomDemoDatabase.class, DATABASE_NAME)
                 .allowMainThreadQueries()
 //                .openHelperFactory(new SafeHelperFactory("123456".toCharArray()))
@@ -70,7 +81,7 @@ public abstract class RoomDemoDatabase extends RoomDatabase {
 
                 })
 //                .fallbackToDestructiveMigration()
-//                .addMigrations(MIGRATION_1_2)
+                .addMigrations(MIGRATION_1_2)
                 .build();
     }
 }
