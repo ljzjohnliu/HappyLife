@@ -73,5 +73,6 @@ dependencies {
     implementation project(':calendarview')
 
     implementation project(':dataroom')
+    implementation project(':customview')
     annotationProcessor "androidx.room:room-compiler:$room_version"
 }
