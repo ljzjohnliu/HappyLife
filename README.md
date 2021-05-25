@@ -1,5 +1,14 @@
 # READEME
 
+想要在studio中直接调试java程序，需要修改.idea/gradle.xml
+添加<option name="delegatedBuild" value="false" />
+
+<GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="PLATFORM" />
+        ...
+      </GradleProjectSettings>
+
 ## common封装了部分基础功能
   audioRecord目录是封装录音相关功能；
   base目录封装Activity和Fragment基类，主要是抽象几个方法以及把Activity加到管理栈中；
