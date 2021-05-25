@@ -1,4 +1,4 @@
-package com.ilife.happy.activity;
+package com.ilife.happy.activity.test;
 
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -30,7 +30,7 @@ import retrofit2.Response;
 /**
  * Just test net api!!!
  */
-public class TestNetApiAvtivity extends AppCompatActivity {
+public class TestNetApiActivity extends AppCompatActivity {
 
     private static final String TAG = "TestNetApi";
     @BindView(R.id.result_tv)

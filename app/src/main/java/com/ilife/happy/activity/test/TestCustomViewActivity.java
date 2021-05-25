@@ -1,4 +1,4 @@
-package com.ilife.happy.activity;
+package com.ilife.happy.activity.test;
 
 import android.os.Bundle;
 

@@ -18,5 +18,5 @@ ext{
     event_bus_version       = "3.2.0"
     mmkv_version            = "1.2.6"
 
-    room_version            = "2.2.6"
+    room_version            = "2.3.0"
 }

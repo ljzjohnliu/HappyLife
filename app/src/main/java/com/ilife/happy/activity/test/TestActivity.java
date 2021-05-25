@@ -1,4 +1,4 @@
-package com.ilife.happy.activity;
+package com.ilife.happy.activity.test;
 
 import android.os.Bundle;
 
@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ilife.common.base.BaseSimpleActivity;
 
-public class TestAvtivity extends AppCompatActivity {
+public class TestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

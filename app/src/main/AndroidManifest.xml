@@ -30,16 +30,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.CenterFabActivity"/>
+        <activity android:name=".activity.CenterFabActivity" />
         <activity
             android:name=".activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.RoomUserActivity" />
-        <activity android:name=".activity.RoomNoteActivity" />
         <activity
             android:name=".activity.NewNoteActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.TestCustomViewActivity"/>
+
+        <!-- ***************以下是测试用的Activity************** -->
+        <activity android:name=".activity.test.TestActivity" />
+        <activity android:name=".activity.test.RoomUserActivity" />
+        <activity android:name=".activity.test.RoomNoteActivity" />
+        <activity android:name=".activity.test.TestCustomViewActivity" />
+        <activity android:name=".activity.test.TestNetApiActivity" />
+        <!-- ***************以上是测试用的Activity************** -->
+
     </application>
 
 </manifest>

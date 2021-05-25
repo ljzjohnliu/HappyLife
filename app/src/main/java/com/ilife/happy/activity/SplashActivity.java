@@ -8,7 +8,6 @@ import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.room.Room;
 
 import com.ilife.common.base.BaseSimpleActivity;
 import com.ilife.dataroom.RoomDemoDatabase;
@@ -46,7 +45,7 @@ public class SplashActivity extends BaseSimpleActivity {
             if (count >= 0) {
                 mCountTxt.setText(count + "秒");
                 if(count == 0){
-                    gotoMian();
+                    gotoMain();
                 }
             }
 
@@ -89,7 +88,7 @@ public class SplashActivity extends BaseSimpleActivity {
         }, 1000, 1000);
     }
 
-    public void gotoMian(){
+    public void gotoMain(){
         Intent intent = new Intent(this,CenterFabActivity.class);
         startActivity(intent);
     }
