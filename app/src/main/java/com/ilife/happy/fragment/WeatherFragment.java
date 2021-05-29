@@ -3,6 +3,7 @@ package com.ilife.happy.fragment;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
@@ -25,6 +26,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.ilife.common.basemvp.BaseFragment;
 import com.ilife.happy.R;
+import com.ilife.happy.activity.test.TestCustomViewActivity;
 import com.ilife.happy.bean.AddressBean;
 import com.ilife.happy.bean.WeatherInfo;
 import com.ilife.happy.bean.WeatherInfoData;
@@ -114,13 +116,16 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter, IWeatherCont
         mGpsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: isLocationServiceEnabled " + isLocationServiceEnabled());
-                if (isLocationServiceEnabled()) {
-                    getLocation();
-                } else {
-                    Toast.makeText(getContext(), "定位失败", Toast.LENGTH_LONG).show();
-                }
-//                mian();
+//                Log.d(TAG, "onClick: isLocationServiceEnabled " + isLocationServiceEnabled());
+//                if (isLocationServiceEnabled()) {
+//                    getLocation();
+//                } else {
+//                    Toast.makeText(getContext(), "定位失败", Toast.LENGTH_LONG).show();
+//                }
+////                mian();
+
+                Intent intent = new Intent(getContext(), TestCustomViewActivity.class);
+                startActivity(intent);
             }
         });
 

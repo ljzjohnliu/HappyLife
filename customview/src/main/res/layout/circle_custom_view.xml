@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <FrameLayout
+        android:id="@+id/image_view_frame_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/tag_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY" />
+        <!--android:background="@drawable/circle_female"-->
+
+        <com.ilife.customview.CircleImageView
+            android:id="@+id/circle_view_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+        <!--android:src="@mipmap/ic_test_cus"-->
+        <ImageView
+            android:id="@+id/circle_progress_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom|right"
+            android:scaleType="fitXY" />
+       <!-- android:background="@drawable/happy_progress_0"-->
+    </FrameLayout>
+</RelativeLayout>

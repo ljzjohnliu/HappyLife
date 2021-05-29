@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="circleCustomView">
+        <attr name="circleView_height" format="integer"/>
+        <attr name="circleView_Width" format="integer"/>
+        <attr name="circleView_image" format="reference"/>
+        <attr name="ConcentricView_height" format="integer"/>
+        <attr name="concentricView_Width" format="integer"/>
+        <attr name="concentricView_image" format="reference"/>
+        <attr name="progressView_width" format="integer"/>
+        <attr name="progressView_height" format="integer"/>
+        <attr name="progressView_image" format="reference"/>
+        <attr name="sex" format="enum">
+            <enum name="man" value="0"/>
+            <enum name="woman" value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>
