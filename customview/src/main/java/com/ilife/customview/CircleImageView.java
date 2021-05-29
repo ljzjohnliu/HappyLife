@@ -22,18 +22,16 @@ public class CircleImageView extends AppCompatImageView {
     private Context context;
 
     public CircleImageView(Context context) {
-        super(context);
-        this.context = context;
-        init();
+        this(context, null);
     }
 
     public CircleImageView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
-        init();
     }
 
     public CircleImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.context = context;
         init();
     }
 

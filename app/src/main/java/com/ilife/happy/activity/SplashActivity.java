@@ -70,7 +70,7 @@ public class SplashActivity extends BaseSimpleActivity {
     protected void initData() {
         roomDemoDatabase = RoomDemoDatabase.getInstance(this);
         mFamousAphorismDao = roomDemoDatabase.famousAphorismDao();
-        count = 5;
+        count = 1;
         getFamousData();
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
