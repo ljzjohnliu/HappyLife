@@ -2,10 +2,10 @@ package com.ilife.customview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -18,9 +18,9 @@ public class HeadPortraitView extends RelativeLayout {
     private String mProgressAttrs;
     private int mSexAttrs;
 
-    private FrameLayout mFrameLayout;
+    private RelativeLayout baseLayout;
     private ImageView mTagCircleImage;
-    private CircleImageView mCircleImage;
+    private CircleImageView mAvatarImage;
     private ImageView mProgressImage;
 
     private Context mContext;
@@ -42,9 +42,9 @@ public class HeadPortraitView extends RelativeLayout {
         this.mContext = context;
 
         View view = View.inflate(mContext, R.layout.circle_custom_view, this);
-        mFrameLayout = view.findViewById(R.id.image_view_frame_layout);
+        baseLayout = view.findViewById(R.id.base_layout);
         mTagCircleImage = view.findViewById(R.id.tag_view);
-        mCircleImage = view.findViewById(R.id.circle_view_one);
+        mAvatarImage = view.findViewById(R.id.circle_view_one);
         mProgressImage = view.findViewById(R.id.circle_progress_image);
 
 //        init(attrs);
@@ -69,25 +69,80 @@ public class HeadPortraitView extends RelativeLayout {
     }
 
     public void setViewSize(int width, int height){
-        FrameLayout.LayoutParams  mCustomLayoutParams = (FrameLayout.LayoutParams) mTagCircleImage.getLayoutParams();
+        RelativeLayout.LayoutParams  mCustomLayoutParams = (RelativeLayout.LayoutParams) mTagCircleImage.getLayoutParams();
 //                new FrameLayout.LayoutParams(width,height);
         mCustomLayoutParams.width = width;
         mCustomLayoutParams.height = height;
+//        mCustomLayoutParams.gravity = Gravity.CENTER;
         mTagCircleImage.setLayoutParams(mCustomLayoutParams);
 
         int mcirWidth = width / 30 * 23;
         int mcirHeight= height / 30 * 23;
-        FrameLayout.LayoutParams  mConcentricCircleParams = (FrameLayout.LayoutParams) mCircleImage.getLayoutParams();
+        RelativeLayout.LayoutParams  mConcentricCircleParams = (RelativeLayout.LayoutParams) mAvatarImage.getLayoutParams();
 //                new FrameLayout.LayoutParams(mcirWidth,mcirHeight);
         mConcentricCircleParams.width = mcirWidth;
         mConcentricCircleParams.height = mcirHeight;
-        mCircleImage.setLayoutParams(mConcentricCircleParams);
 
-        FrameLayout.LayoutParams  mConcentricCircleProgressParams = (FrameLayout.LayoutParams) mProgressImage.getLayoutParams();
+//        int mMarginleft = -width / 80;
+//        int mMarginTop= -height / 60;
+//        mConcentricCircleParams.setMargins(mMarginleft, mMarginTop, 0, 0);
+        mAvatarImage.setLayoutParams(mConcentricCircleParams);
+
+        RelativeLayout.LayoutParams  mConcentricCircleProgressParams = (RelativeLayout.LayoutParams) mProgressImage.getLayoutParams();
 //                new FrameLayout.LayoutParams(width,height);
-        mConcentricCircleProgressParams.width = width;
-        mConcentricCircleProgressParams.height = height;
+        int mcirWidthP = width / 100 * 3;
+        int mcirHeightP= height / 100 * 3;
+        mConcentricCircleProgressParams.width = width + mcirWidthP;
+        mConcentricCircleProgressParams.height = height + mcirHeightP;
+//        mConcentricCircleProgressParams.gravity = Gravity.CENTER;
         mProgressImage.setLayoutParams(mConcentricCircleProgressParams);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+//        Log.d("test", "widthMeasureSpec === " + widthMeasureSpec + "   ,heightMeasureSpec  = " + heightMeasureSpec);
+
+        int height = px2dip(mContext, baseLayout.getMeasuredHeight());
+        int width = px2dip(mContext, baseLayout.getMeasuredWidth());
+
+        int mar = Math.min(height, width);
+
+        RelativeLayout.LayoutParams mCustomLayoutParams = (RelativeLayout.LayoutParams) mTagCircleImage.getLayoutParams();
+        int mTagCircleWidthMar = width / 20;
+        int mTagCircleHeightMar = height / 20;
+        Log.d("test", "mTagCircleWidthMar === " + mTagCircleWidthMar + "   ,mTagCircleHeightMar  = " + mTagCircleHeightMar);
+
+        Log.d("test", "dip2px(mContext, mTagCircleWidthMar) === " + dip2px(mContext, mTagCircleWidthMar) +
+                "   ,dip2px(mContext, mTagCircleHeightMar)  = " + dip2px(mContext, mTagCircleHeightMar));
+//        mCustomLayoutParams.setMargins(mTagCircleWidthMar,mTagCircleHeightMar, mTagCircleWidthMar, mTagCircleHeightMar);
+        mCustomLayoutParams.setMargins(dip2px(mContext, mTagCircleWidthMar), dip2px(mContext, mTagCircleHeightMar),
+                dip2px(mContext, mTagCircleWidthMar), dip2px(mContext, mTagCircleHeightMar));
+        mTagCircleImage.setLayoutParams(mCustomLayoutParams);
+
+
+        RelativeLayout.LayoutParams mAvatarImageParams = (RelativeLayout.LayoutParams) mAvatarImage.getLayoutParams();
+        int mAvatarImageWidthMar = width / 6;
+        int mAvatarImageHeightMar = height / 6;
+
+        Log.d("test", "dip2px(mContext, mAvatarImageWidthMar) === " + dip2px(mContext, mAvatarImageWidthMar) +
+                "   mAvatarImageWidthMar  = " + mAvatarImageWidthMar);
+        mAvatarImageParams.setMargins(dip2px(mContext, mAvatarImageWidthMar), dip2px(mContext, mAvatarImageHeightMar),
+                dip2px(mContext, mAvatarImageWidthMar), dip2px(mContext, mAvatarImageHeightMar));
+        mAvatarImage.setLayoutParams(mAvatarImageParams);
+//
+//        FrameLayout.LayoutParams  mConcentricCircleProgressParams = (FrameLayout.LayoutParams) mProgressImage.getLayoutParams();
+//        int mcirWidthP = width / 100 * 3;
+//        int mcirHeightP= height / 100 * 3;
+//        mConcentricCircleProgressParams.width = width + mcirWidthP;
+//        mConcentricCircleProgressParams.height = height + mcirHeightP;
+//        mConcentricCircleProgressParams.gravity = Gravity.CENTER;
+//        mProgressImage.setLayoutParams(mConcentricCircleProgressParams);
     }
 
     public void setTagCircleImage(int id){
@@ -96,11 +151,28 @@ public class HeadPortraitView extends RelativeLayout {
     }
 
     public void setAvatarImage(int id){
-        mCircleImage.setImageResource(id);
+        mAvatarImage.setImageResource(id);
 //        mCircleImage.setBackgroundResource(id);
     }
 
     public void setProgressImage(int id){
         mProgressImage.setBackgroundResource(id);
     }
+
+    /**
+     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+     */
+    public static int dip2px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
+
+    /**
+     * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
+     */
+    public static int px2dip(Context context, float pxValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
+
 }

@@ -17,9 +17,9 @@ public class TestCustomViewActivity extends AppCompatActivity {
         mHeadPortraitView = findViewById(R.id.test_view);
         mHeadPortraitView.setTagCircleImage(R.drawable.circle_female);
         mHeadPortraitView.setAvatarImage(R.mipmap.ic_test_cus);
-        mHeadPortraitView.setProgressImage(R.drawable.happy_progress_0);
+        mHeadPortraitView.setProgressImage(R.drawable.happy_progress_3);
 //        mHeadPortraitView.setViewSize(400, 400);
 //        mHeadPortraitView.setViewSize(120, 120);
-        mHeadPortraitView.setViewSize(1000, 1000);
+//        mHeadPortraitView.setViewSize(1200, 1200);
     }
 }
