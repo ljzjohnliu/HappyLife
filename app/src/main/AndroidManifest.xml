@@ -42,7 +42,8 @@
         <activity android:name=".activity.test.TestActivity" />
         <activity android:name=".activity.test.RoomUserActivity" />
         <activity android:name=".activity.test.RoomNoteActivity" />
-        <activity android:name=".activity.test.TestCustomViewActivity" />
+        <activity android:name=".activity.test.TestCustomViewActivity"
+            android:exported="true"/>
         <activity android:name=".activity.test.TestNetApiActivity" />
         <!-- ***************以上是测试用的Activity************** -->
 
