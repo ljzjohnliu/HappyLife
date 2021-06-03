@@ -39,12 +39,16 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- ***************以下是测试用的Activity************** -->
-        <activity android:name=".activity.test.TestActivity" />
+        <activity
+            android:name=".activity.test.TestCustomAvatarActivity"
+            android:exported="true" />
         <activity android:name=".activity.test.RoomUserActivity" />
         <activity android:name=".activity.test.RoomNoteActivity" />
-        <activity android:name=".activity.test.TestCustomViewActivity"
-            android:exported="true"/>
         <activity android:name=".activity.test.TestNetApiActivity" />
+        <activity
+            android:name=".activity.test.TestCustomViewActivity"
+            android:exported="true" />
+
         <!-- ***************以上是测试用的Activity************** -->
 
     </application>

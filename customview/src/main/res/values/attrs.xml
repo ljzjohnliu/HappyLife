@@ -15,4 +15,20 @@
             <enum name="woman" value="1"/>
         </attr>
     </declare-styleable>
+<attr name="textSize" format="dimension" />
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="draw_style" format="enum" >
+            <enum name="Xfermode" value="0"/>
+            <enum name="BitmapShader" value="1"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="CustomAvatar">
+        <attr name="defaultAvatar" format="reference" />
+        <attr name="isShowCircle" format="boolean" />
+        <attr name="isShowHappyProgress" format="boolean" />
+        <attr name="defaultHappyProgress" format="integer" />
+        <attr name="happyProgress" format="integer" />
+    </declare-styleable>
 </resources>

@@ -27,7 +27,7 @@
            android:layout_marginEnd="15dp"
            android:layout_marginTop="15dp"
            android:layout_marginBottom="15dp"-->
-    <!--android:src="@mipmap/ic_test_cus"-->
+    <!--android:src="@drawable/ic_test_cus"-->
     <ImageView
         android:id="@+id/circle_progress_image"
         android:layout_width="match_parent"

@@ -14,8 +14,8 @@ public class CalendarUtils {
     public static final int NOTE_TYPE_BABY = 3;
 
     //定义了两个数组，一个存放图片，一个存放省份
-    public static int[] image = {R.mipmap.fire_1, R.mipmap.fire_2,
-            R.mipmap.fire_3, R.mipmap.fire_4};
+    public static int[] image = {R.drawable.fire_1, R.drawable.fire_2,
+            R.drawable.fire_3, R.drawable.fire_4};
     public static String[] noteTypes = {"健身", "学习", "娱乐", "亲子"};
 
     public static int getMarkColor(int type) {
