@@ -1,10 +1,14 @@
 package com.ilife.happy.activity.test;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ilife.customview.widget.ChatFabView;
 import com.ilife.customview.widget.CircleImageView;
 import com.ilife.customview.widget.CustomAvatar;
 import com.ilife.happy.R;
@@ -21,6 +25,11 @@ public class TestCustomAvatarActivity extends AppCompatActivity {
     CustomAvatar customAvatar3;
     @BindView(R.id.circle_imageview)
     CircleImageView circleImageview;
+
+    @BindView(R.id.upper_layer)
+    RelativeLayout upperLayer;
+    @BindView(R.id.fab)
+    ChatFabView fab;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,5 +53,15 @@ public class TestCustomAvatarActivity extends AppCompatActivity {
 //        circleImageview.setImageResource(R.mipmap.ic_test);
         circleImageview.setImageDrawable(getResources().getDrawable(R.drawable.ic_test3));
 
+        fab.setVisibility( View.VISIBLE);
+        fab.showEntrance(false);
+
+        upperLayer.setOnTouchListener((View view, MotionEvent motionEvent) -> {
+            if (fab != null && fab.getVisibility() == View.VISIBLE) {
+                fab.foldToNearestBorder();
+            }
+
+            return false;
+        });
     }
 }
