@@ -35,3 +35,6 @@
     view_fab.xml中id是right_side_layout的布局部分，由于right_side_entrance这个id的view某些场景可见，某些场景不可见。
     所以想要right_side_layout内容自适应，这样right_side_entrance可见和不可见的时候可以内容自适应不同不高度。
     但是试下来，并没有达到预期效果！！！
+    已经写好了验证问题的代码：在TestCustomAvatarActivity中ChatFabView fab;
+    fab.showEntrance(true);右下角的布局ChatFabView显示两个子控件
+    fab.showEntrance(false);右下角的布局ChatFabView显示一个子控件
