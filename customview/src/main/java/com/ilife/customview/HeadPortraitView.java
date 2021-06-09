@@ -46,56 +46,7 @@ public class HeadPortraitView extends RelativeLayout {
         mTagCircleImage = view.findViewById(R.id.tag_view);
         mAvatarImage = view.findViewById(R.id.circle_view_one);
         mProgressImage = view.findViewById(R.id.circle_progress_image);
-
-//        init(attrs);
-    }
-
-    public void init(AttributeSet attrs){
-        TypedArray array = mContext.obtainStyledAttributes(attrs, R.styleable.circleCustomView);
-        mTagViewAttrs = array.getString(R.styleable.circleCustomView_circleView_image);
-        mCircleImageAttrs = array.getString(R.styleable.circleCustomView_concentricView_image);
-        mProgressAttrs = array.getString(R.styleable.circleCustomView_progressView_image);
-        mSexAttrs = array.getInt(R.styleable.circleCustomView_sex,0);
-        array.recycle();
-
-//        Drawable mSexCircleDrawable = getResources().getDrawable(mTagViewAttrs);
-//        mTagCircleImage.setImageDrawable(mSexCircleDrawable);
-//
-//        Drawable mCircleDrawable = getResources().getDrawable(mCircleImageAttrs);
-//        mCircleImage.setImageDrawable(mCircleDrawable);
-//
-//        Drawable mProgressDrawable = getResources().getDrawable(mProgressImage);
-//        mProgressImage.setImageDrawable(mProgressDrawable);
-    }
-
-    public void setViewSize(int width, int height){
-        RelativeLayout.LayoutParams  mCustomLayoutParams = (RelativeLayout.LayoutParams) mTagCircleImage.getLayoutParams();
-//                new FrameLayout.LayoutParams(width,height);
-        mCustomLayoutParams.width = width;
-        mCustomLayoutParams.height = height;
-//        mCustomLayoutParams.gravity = Gravity.CENTER;
-        mTagCircleImage.setLayoutParams(mCustomLayoutParams);
-
-        int mcirWidth = width / 30 * 23;
-        int mcirHeight= height / 30 * 23;
-        RelativeLayout.LayoutParams  mConcentricCircleParams = (RelativeLayout.LayoutParams) mAvatarImage.getLayoutParams();
-//                new FrameLayout.LayoutParams(mcirWidth,mcirHeight);
-        mConcentricCircleParams.width = mcirWidth;
-        mConcentricCircleParams.height = mcirHeight;
-
-//        int mMarginleft = -width / 80;
-//        int mMarginTop= -height / 60;
-//        mConcentricCircleParams.setMargins(mMarginleft, mMarginTop, 0, 0);
-        mAvatarImage.setLayoutParams(mConcentricCircleParams);
-
-        RelativeLayout.LayoutParams  mConcentricCircleProgressParams = (RelativeLayout.LayoutParams) mProgressImage.getLayoutParams();
-//                new FrameLayout.LayoutParams(width,height);
-        int mcirWidthP = width / 100 * 3;
-        int mcirHeightP= height / 100 * 3;
-        mConcentricCircleProgressParams.width = width + mcirWidthP;
-        mConcentricCircleProgressParams.height = height + mcirHeightP;
-//        mConcentricCircleProgressParams.gravity = Gravity.CENTER;
-        mProgressImage.setLayoutParams(mConcentricCircleProgressParams);
+        
     }
 
     @Override
@@ -106,7 +57,6 @@ public class HeadPortraitView extends RelativeLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-//        Log.d("test", "widthMeasureSpec === " + widthMeasureSpec + "   ,heightMeasureSpec  = " + heightMeasureSpec);
 
         int height = px2dip(mContext, baseLayout.getMeasuredHeight());
         int width = px2dip(mContext, baseLayout.getMeasuredWidth());
@@ -135,24 +85,14 @@ public class HeadPortraitView extends RelativeLayout {
         mAvatarImageParams.setMargins(dip2px(mContext, mAvatarImageWidthMar), dip2px(mContext, mAvatarImageHeightMar),
                 dip2px(mContext, mAvatarImageWidthMar), dip2px(mContext, mAvatarImageHeightMar));
         mAvatarImage.setLayoutParams(mAvatarImageParams);
-//
-//        FrameLayout.LayoutParams  mConcentricCircleProgressParams = (FrameLayout.LayoutParams) mProgressImage.getLayoutParams();
-//        int mcirWidthP = width / 100 * 3;
-//        int mcirHeightP= height / 100 * 3;
-//        mConcentricCircleProgressParams.width = width + mcirWidthP;
-//        mConcentricCircleProgressParams.height = height + mcirHeightP;
-//        mConcentricCircleProgressParams.gravity = Gravity.CENTER;
-//        mProgressImage.setLayoutParams(mConcentricCircleProgressParams);
     }
 
     public void setTagCircleImage(int id){
-//        mTagCircleImage.setImageResource(id);
         mTagCircleImage.setBackgroundResource(id);
     }
 
     public void setAvatarImage(int id){
         mAvatarImage.setImageResource(id);
-//        mCircleImage.setBackgroundResource(id);
     }
 
     public void setProgressImage(int id){
