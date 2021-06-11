@@ -9,7 +9,7 @@
     <!--android:background="@drawable/circle_female"-->
 
     <com.ilife.customview.CircleImageView
-        android:id="@+id/circle_view_one"
+        android:id="@+id/circle_avatar_imageview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"/>
@@ -29,7 +29,7 @@
            android:layout_marginBottom="15dp"-->
     <!--android:src="@drawable/ic_test_cus"-->
     <ImageView
-        android:id="@+id/circle_progress_image"
+        android:id="@+id/progress_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
