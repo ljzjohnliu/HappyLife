@@ -1,12 +1,9 @@
 package com.ilife.customview;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -44,9 +41,9 @@ public class HeadPortraitView extends RelativeLayout {
         View view = View.inflate(mContext, R.layout.circle_custom_view, this);
         baseLayout = view.findViewById(R.id.base_layout);
         mTagCircleImage = view.findViewById(R.id.tag_view);
-        mAvatarImage = view.findViewById(R.id.circle_view_one);
-        mProgressImage = view.findViewById(R.id.circle_progress_image);
-        
+        mAvatarImage = view.findViewById(R.id.circle_avatar_imageview);
+        mProgressImage = view.findViewById(R.id.progress_image);
+
     }
 
     @Override
