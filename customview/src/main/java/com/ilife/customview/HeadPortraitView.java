@@ -10,10 +10,6 @@ import android.widget.RelativeLayout;
 import androidx.annotation.Nullable;
 
 public class HeadPortraitView extends RelativeLayout {
-    private String mTagViewAttrs;
-    private String mCircleImageAttrs;
-    private String mProgressAttrs;
-    private int mSexAttrs;
 
     private RelativeLayout baseLayout;
     private ImageView mTagCircleImage;
@@ -58,19 +54,19 @@ public class HeadPortraitView extends RelativeLayout {
         int height = px2dip(mContext, baseLayout.getMeasuredHeight());
         int width = px2dip(mContext, baseLayout.getMeasuredWidth());
 
-        int mar = Math.min(height, width);
+        int marMin = Math.min(height, width);
 
-        RelativeLayout.LayoutParams mCustomLayoutParams = (RelativeLayout.LayoutParams) mTagCircleImage.getLayoutParams();
-        int mTagCircleWidthMar = width / 20;
-        int mTagCircleHeightMar = height / 20;
-        Log.d("test", "mTagCircleWidthMar === " + mTagCircleWidthMar + "   ,mTagCircleHeightMar  = " + mTagCircleHeightMar);
+        RelativeLayout.LayoutParams mAvatarTagLP = (RelativeLayout.LayoutParams) mTagCircleImage.getLayoutParams();
+        int mAvatarTagWidthMar = width / 20;
+        int mAvatarTagHeightMar = height / 20;
+        Log.d("test", "mAvatarTagWidthMar === " + mAvatarTagWidthMar + "   ,mAvatarTagHeightMar  = " + mAvatarTagHeightMar);
 
-        Log.d("test", "dip2px(mContext, mTagCircleWidthMar) === " + dip2px(mContext, mTagCircleWidthMar) +
-                "   ,dip2px(mContext, mTagCircleHeightMar)  = " + dip2px(mContext, mTagCircleHeightMar));
-//        mCustomLayoutParams.setMargins(mTagCircleWidthMar,mTagCircleHeightMar, mTagCircleWidthMar, mTagCircleHeightMar);
-        mCustomLayoutParams.setMargins(dip2px(mContext, mTagCircleWidthMar), dip2px(mContext, mTagCircleHeightMar),
-                dip2px(mContext, mTagCircleWidthMar), dip2px(mContext, mTagCircleHeightMar));
-        mTagCircleImage.setLayoutParams(mCustomLayoutParams);
+        Log.d("test", "dip2px(mContext, mAvatarTagWidthMar) === " + dip2px(mContext, mAvatarTagWidthMar) +
+                "   ,dip2px(mContext, mAvatarTagHeightMar)  = " + dip2px(mContext, mAvatarTagHeightMar));
+//        mAvatarTagLP.setMargins(mAvatarTagWidthMar,mAvatarTagHeightMar, mAvatarTagWidthMar, mAvatarTagHeightMar);
+        mAvatarTagLP.setMargins(dip2px(mContext, mAvatarTagWidthMar), dip2px(mContext, mAvatarTagHeightMar),
+                dip2px(mContext, mAvatarTagWidthMar), dip2px(mContext, mAvatarTagHeightMar));
+        mTagCircleImage.setLayoutParams(mAvatarTagLP);
 
 
         RelativeLayout.LayoutParams mAvatarImageParams = (RelativeLayout.LayoutParams) mAvatarImage.getLayoutParams();
