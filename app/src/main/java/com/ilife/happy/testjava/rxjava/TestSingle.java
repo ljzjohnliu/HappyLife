@@ -43,7 +43,7 @@ public class TestSingle {
          *
          */
 //        composeUse();
-//        concatUse();
+        concatUse();
 //        createUse();
 //        errorUse();
 //        mapUse();
@@ -51,7 +51,7 @@ public class TestSingle {
 //        flatMapObservableUse();
 //        onErrorReturnUse();
 //        timeoutUse();
-        zipUse();
+//        zipUse();
     }
 
     public static void baseUse() {
@@ -124,7 +124,13 @@ public class TestSingle {
      * 仅仅用来连接Single顺序执行的，比如顺序执行检查网络，检查内存，执行任务，注意：如果某个Single调用了onError()会导致被中断。
      */
     public static void concatUse() {
-        Single.concat(Single.just(addValue(1, 2)), Single.just(secondOpt()));
+        Single.concat(Single.just(addValue(1, 2)), Single.just(secondOpt()))
+        .subscribe(new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) throws Throwable {
+                System.out.println("concatUse, accept -------------- integer = " + integer);
+            }
+        });
     }
 
     /**
