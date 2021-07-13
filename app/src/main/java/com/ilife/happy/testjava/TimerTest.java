@@ -9,18 +9,18 @@ public class TimerTest {
 
     public static void main(String[] args) {
         List<Student> originList = new ArrayList<>();
-        for (int i = 1; i <= 100; i++) {
-            originList.add(new Student("学生"+i, i, i%2));
+        for (int i = 1; i <= 10000; i++) {
+            originList.add(new Student("学生" + i, i, i % 2));
         }
         System.out.println("------------originList.size() = " + originList.size());
 
         List<Student> waitDealList = new ArrayList<>();
-        for (int i = 91; i <= 120; i++) {
-            waitDealList.add(new Student("学生"+i, i, i%2));
+        for (int i = 6001; i <= 12000; i++) {
+            waitDealList.add(new Student("学生" + i, i, i % 2));
         }
         System.out.println("------------waitDealList.size() = " + waitDealList.size());
 
-        //todo 现在需要做的是：把waitDealList中的学生加入到originList学生中，但是要去重，期望得到的最终列表应该是学生1～学生120
+        //todo 现在需要做的是：把waitDealList中的学生加入到originList学生中，但是要去重，期望得到的最终列表应该是学生1～学生12000，能实现肯定没问题，主要考察时间复杂度问题
 
     }
 
