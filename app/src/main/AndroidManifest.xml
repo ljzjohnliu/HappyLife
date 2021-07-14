@@ -49,6 +49,13 @@
             android:name=".activity.test.TestCustomViewActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".activity.test.FirstActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.test.SecondActivity"
+            android:exported="true" />
+
         <!-- ***************以上是测试用的Activity************** -->
 
     </application>
