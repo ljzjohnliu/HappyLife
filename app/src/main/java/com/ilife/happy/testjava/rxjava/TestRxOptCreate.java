@@ -44,6 +44,7 @@ import kotlin.jvm.functions.Function0;
 /**
  * Rxjava 的操作符:创建操作
  * 用于创建Observable的操作符
+ * 凡是使用到了延迟等操作的话 在这里需要用blockingSubscribe才能看到执行结果！其实subscribe也是可以的，只是没有输出日志而已
  */
 public class TestRxOptCreate {
 
@@ -53,7 +54,7 @@ public class TestRxOptCreate {
 //        justUse();
 //        deferUse();
 //        rangeUse();
-        intervalUse();
+//        intervalUse();
 //        repeatUse();
         timerUse();
     }
@@ -247,6 +248,7 @@ public class TestRxOptCreate {
 
     /**
      * 存疑：订阅者回调中并没有执行！！放到app中是按照预期执行的！
+     * 搞明白了，只需要用blockingSubscribe阻塞即可
      * 创建一个按固定时间间隔发射整数序列的Observable
      * Interval操作符返回一个Observable，它按固定的时间间隔发射一个无限递增的整数序列。
      * RxJava将这个操作符实现为interval方法。它接受一个表示时间间隔的参数和一个表示时间单位的参数。
@@ -255,7 +257,7 @@ public class TestRxOptCreate {
 
         //每3秒发个自增整数
 //        Observable.interval(3, TimeUnit.SECONDS)
-//                .subscribe(new Consumer<Long>() {
+//                .blockingSubscribe(new Consumer<Long>() {
 //                    @Override
 //                    public void accept(Long aLong) throws Throwable {
 //                        System.out.println("intervalUse, accept --------------aLong = " + aLong);
@@ -264,7 +266,7 @@ public class TestRxOptCreate {
 
         //初始延时1秒，每3秒发一个自增整数
 //        Observable.interval(1, 3, TimeUnit.MILLISECONDS)
-//                .subscribe(new Consumer<Long>() {
+//                .blockingSubscribe(new Consumer<Long>() {
 //                    @Override
 //                    public void accept(Long aLong) throws Throwable {
 //                        System.out.println("intervalUse, accept --------------aLong = " + aLong);
@@ -273,7 +275,7 @@ public class TestRxOptCreate {
 
         //初始延时2秒，后每1秒发一个从10开始的整数，发5个（发到14）停止
 //        Observable.intervalRange(10, 5, 1, 1, TimeUnit.MILLISECONDS)
-//                .subscribe(new Consumer<Long>() {
+//                .blockingSubscribe(new Consumer<Long>() {
 //                    @Override
 //                    public void accept(Long aLong) throws Throwable {
 //                        System.out.println("intervalUse, accept --------------aLong = " + aLong);
@@ -282,7 +284,7 @@ public class TestRxOptCreate {
 
         Observable.intervalRange(10, 5, 500, 500, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<Long>() {
+                .blockingSubscribe(new Observer<Long>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
                         System.out.println("intervalUse, onSubscribe --------------d = " + d);
@@ -335,7 +337,7 @@ public class TestRxOptCreate {
      */
     public static void timerUse() {
         Observable.timer(1, TimeUnit.MILLISECONDS)
-                .subscribe(new Consumer<Long>() {
+                .blockingSubscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Throwable {
                         System.out.println("timerUse, accept --------------aLong = " + aLong);
