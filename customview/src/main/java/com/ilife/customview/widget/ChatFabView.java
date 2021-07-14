@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.ilife.common.utils.DensityUtil;
 import com.ilife.common.utils.SystemUIUtils;
 import com.ilife.customview.R;
 
@@ -80,6 +81,18 @@ public class ChatFabView extends ConstraintLayout implements View.OnClickListene
     public void showEntrance(boolean isShow) {
         rightSideEntrance.setVisibility(isShow ? View.VISIBLE : View.GONE);
         leftSideEntrance.setVisibility(isShow ? View.VISIBLE : View.GONE);
+
+        ConstraintLayout.LayoutParams rightParams = (ConstraintLayout.LayoutParams)rightSideLayout.getLayoutParams();
+        rightParams.width = DensityUtil.dipToPix(mContext, 40);
+        rightParams.height = DensityUtil.dipToPix(mContext, isShow ? 105 : 60);
+        rightParams.editorAbsoluteX = ((int) buttonContainer.getX());
+        rightSideLayout.setLayoutParams(rightParams);
+
+        ConstraintLayout.LayoutParams leftParams = (ConstraintLayout.LayoutParams)leftSideLayout.getLayoutParams();
+        leftParams.width = DensityUtil.dipToPix(mContext, 40);
+        leftParams.height = DensityUtil.dipToPix(mContext, isShow ? 105 : 60);
+        leftParams.editorAbsoluteX = ((int) buttonContainer.getX());
+        leftSideLayout.setLayoutParams(leftParams);
     }
 
     public void expand() {

@@ -54,7 +54,7 @@ public class TestCustomAvatarActivity extends AppCompatActivity {
         circleImageview.setImageDrawable(getResources().getDrawable(R.drawable.ic_test3));
 
         fab.setVisibility( View.VISIBLE);
-        fab.showEntrance(false);
+        fab.showEntrance(true);
 
         upperLayer.setOnTouchListener((View view, MotionEvent motionEvent) -> {
             if (fab != null && fab.getVisibility() == View.VISIBLE) {
