@@ -69,6 +69,9 @@
             android:name=".activity.test.flip.FlipRightActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".activity.test.threadpool.ThreadPoolActivity"
+            android:exported="true" />
         <!-- ***************以上是测试用的Activity************** -->
 
     </application>
