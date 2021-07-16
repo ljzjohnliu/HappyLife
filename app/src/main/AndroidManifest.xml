@@ -59,6 +59,16 @@
             android:name=".activity.test.TestViewFlipperActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".activity.test.flip.FlipMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.test.flip.FlipLeftActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.test.flip.FlipRightActivity"
+            android:exported="true" />
+
         <!-- ***************以上是测试用的Activity************** -->
 
     </application>
