@@ -2,11 +2,11 @@ package com.ilife.happy.activity.test.threadpool;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ilife.happy.R;
+import com.ilife.happy.fragment.HalfManagerFragment;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -33,7 +33,7 @@ public class ThreadPoolActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.test_tread)
-    public void onClick() {
+    public void onTestTreadClick() {
         /**
          * 基本线程池使用
          */
@@ -54,5 +54,11 @@ public class ThreadPoolActivity extends AppCompatActivity {
             };
             threadPoolExecutor.execute(runnable);
         }
+    }
+
+    @OnClick(R.id.test_half)
+    public void onTestHalfClick() {
+        HalfManagerFragment fragment = new HalfManagerFragment.Builder().setType(0).setGroupId("groupId").build();
+        fragment.show(getSupportFragmentManager(), HalfManagerFragment.TAG);
     }
 }

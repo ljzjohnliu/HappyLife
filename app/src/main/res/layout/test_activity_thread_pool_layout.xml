@@ -31,4 +31,18 @@
         android:textSize="18sp"
         android:textStyle="normal" />
 
+    <Button
+        android:id="@+id/test_half"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/test_tread"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="半屏UI"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="normal" />
+
 </RelativeLayout>
