@@ -2,5 +2,5 @@
 #./gradlew clean
 ./gradlew :app:assembleDebug
 adb install -r app/build/outputs/apk/debug/app-debug.apk
-#adb shell am start -n com.ilife.happy/com.ilife.happy.activity.test.threadpool.ThreadPoolActivity
-adb shell am start -n com.ilife.happy/com.ilife.happy.activity.test.sider.Style2Activity
+adb shell am start -n com.ilife.happy/com.ilife.happy.activity.test.TestCustomViewActivity
+#adb shell am start -n com.ilife.happy/com.ilife.happy.activity.test.sider.Style2Activity
